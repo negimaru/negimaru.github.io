@@ -15,6 +15,8 @@ window.onload = () => {
 
     const myRequest = new Request('/articles.json', myInit);
 
+
+
     fetch(myRequest)
         .then(function (response){ return  response.json()})
         .then(function (data) {

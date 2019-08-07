@@ -1,11 +1,11 @@
 {
-  "name": "PEUVEDOBLEA",
-  "short_name": "Hello",
-  "lang": "en-US",
+  "name": "Peseyloscomponentes",
+  "short_name": "PeseYComp",
+  "lang": "es-ES",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "white",
-  "theme_color": "white",
+  "background_color": "orange",
+  "theme_color": "orange",
   "icons": [{
     "src": "images/hello-icon-128.png",
     "sizes": "128x128",
