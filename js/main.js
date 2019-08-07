@@ -7,7 +7,7 @@ window.onload = () => {
     let deferredPrompt;
 
     window.addEventListener('beforeinstallprompt', (e) => {
-        console.log("Quiero Instalarme y no se como");
+        alert("Pum pum 2 truenos")
         deferredPrompt = e;
 
     });
