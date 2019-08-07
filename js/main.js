@@ -28,18 +28,12 @@ window.onload = () => {
         console.log('👍', 'butInstall-clicked');
         const promptEvent = window.deferredPrompt
         if (!promptEvent) {
-            // The deferred prompt isn't available.
             return;
         }
-        // Show the install prompt.
         promptEvent.prompt();
-        // Log the result
         promptEvent.userChoice.then((result) => {
             console.log('👍', 'userChoice', result);
-            // Reset the deferred prompt variable, since
-            // prompt() can only be called once.
             window.deferredPrompt = null;
-            // Hide the install button.
             divInstall.classList.toggle('hidden', true);
         });
     });
@@ -85,6 +79,37 @@ window.onload = () => {
         });
 
 
+
+
+
+
+
+
+    const Installer = function(root) {
+        let promptEvent;
+
+        const install = function(e) {
+            if(promptEvent) {
+                promptEvent.prompt();
+                promptEvent.userChoice
+                    .then(function(choiceResult) {
+                        // The user actioned the prompt (good or bad).
+                        // good is handled in
+                        promptEvent = null;
+                        ga('send', 'event', 'install', choiceResult);
+                        root.classList.remove('available');
+                    })
+                    .catch(function(installError) {
+                        // Boo. update the UI.
+                        promptEvent = null;
+                        ga('send', 'event', 'install', 'errored');
+                        root.classList.remove('available');
+                    });
+            }
+        };
+
+        const installEl = document.getElementById('installer');
+        const installer = new Installer(installEl);
 
 
 }
