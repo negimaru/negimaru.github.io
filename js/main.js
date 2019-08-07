@@ -18,9 +18,7 @@ window.onload = () => {
 
     window.addEventListener('beforeinstallprompt', (event) => {
         console.log('👍', 'beforeinstallprompt', event);
-        // Stash the event so it can be triggered later.
         window.deferredPrompt = event;
-        // Remove the 'hidden' class from the install button container
         divInstall.classList.toggle('hidden', false);
     });
 
@@ -80,33 +78,6 @@ window.onload = () => {
 
 
 
-    const Installer = function(root) {
-        let promptEvent;
 
-        const install = function(e) {
-            if(promptEvent) {
-                promptEvent.prompt();
-                promptEvent.userChoice
-                    .then(function(choiceResult) {
-                        // The user actioned the prompt (good or bad).
-                        // good is handled in
-                        promptEvent = null;
-                        ga('send', 'event', 'install', choiceResult);
-                        root.classList.remove('available');
-                    })
-                    .catch(function(installError) {
-                        // Boo. update the UI.
-                        promptEvent = null;
-                        ga('send', 'event', 'install', 'errored');
-                        root.classList.remove('available');
-                    });
-            }
-        };
-
-        const installEl = document.getElementById('installer');
-        const installer = new Installer(installEl);
-
-
-}
 }
 
