@@ -1,4 +1,4 @@
-var cacheName = 'hello-pwa';
+var cacheName = 'pese y los componente';
 var filesToCache = [
   '/',
   '/index.html',
