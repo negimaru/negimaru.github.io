@@ -1,9 +1,6 @@
 var cacheName = 'pese y los componente';
 var filesToCache = [
-  '/',
-  '/index.html',
   '/css/style.css',
-  '/js/main.js'
 ];
 
 /* Start the service worker and cache all of the app's content */
@@ -22,10 +19,5 @@ self.addEventListener('fetch', function(e) {
       return response || fetch(e.request);
     })
   );
-});
-
-
-self.addEventListener('activate', event => {
-  event.waitUntil(self.clients.claim());
 });
 
