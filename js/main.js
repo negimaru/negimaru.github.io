@@ -4,9 +4,14 @@ window.onload = () => {
         navigator.serviceWorker.register('./sw.js');
     }
 
-    window.addEventListener('beforeinstallprompt', function(e) {
-        outputElement.textContent = 'beforeinstallprompt Event fired';
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        console.log("Quiero Instalarme y no se como");
+        deferredPrompt = e;
+
     });
+
 
     const myHeaders = new Headers();
 
@@ -45,6 +50,8 @@ window.onload = () => {
                 articlesContainer.append(container);
             })
         });
+
+
 
 
 }
