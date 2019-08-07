@@ -4,6 +4,10 @@ window.onload = () => {
         navigator.serviceWorker.register('./sw.js');
     }
 
+    window.addEventListener('beforeinstallprompt', function(e) {
+        outputElement.textContent = 'beforeinstallprompt Event fired';
+    });
+
     const myHeaders = new Headers();
 
     const myInit = {
