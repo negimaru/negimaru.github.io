@@ -80,11 +80,6 @@ window.onload = () => {
 
 
 
-
-
-
-
-
     const Installer = function(root) {
         let promptEvent;
 
