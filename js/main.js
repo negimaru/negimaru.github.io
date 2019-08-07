@@ -15,7 +15,7 @@ window.onload = () => {
         mode: 'cors',
         cache: 'default' };
 
-    const myRequest = new Request('www.pccomponentes.com/ajax_nc/get?idArticle=53216', myInit);
+    const myRequest = new Request('https://www.pccomponentes.com/ajax_nc/get?idArticle=53216', myInit);
 
     fetch(myRequest).then(function(response) {
         console.log(response);
