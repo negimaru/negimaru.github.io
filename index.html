@@ -1,29 +1,416 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Pese y los componentes</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="white"/>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Peseyloscomponentes">
-    <meta name="msapplication-TileImage" content="icon-144x144.png">
-    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="image/icon-72x72.png" type="image/x-icon" />
+    <title>Interactive Steam Co-op Deals Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+    <!-- Chosen Palette: NES.css Dark Theme -->
+    <!-- Application Structure Plan: Restructured layout for better flow: Charts first for an overview, then filters directly above the game list for intuitive interaction. Added more games for comprehensiveness. Switched to a dark theme for a 'gaming' aesthetic and fixed layout bugs. -->
+    <!-- Visualization & Content Choices: 
+        - Layout: Charts moved to the top, filters moved to be adjacent to the results. Justification: More logical user flow. See data summary, then filter, then see details.
+        - Theme: Switched to a full dark theme. Justification: Directly addresses user request for a darker, more "gaming" related design.
+        - Data: Added a significant number of new games from the source reports. Justification: Fulfills user request for "most possible games".
+        - Bug Fix: Adjusted card layout to fix the discount tag overflow and hover effect. Justification: Improves UI polish and correctness.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #212529;
+            color: #fff;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            max-height: 350px;
+        }
+        .title-icon {
+            image-rendering: pixelated;
+        }
+        .game-card {
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s ease-in-out;
+        }
+        .game-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 12px #92cc41, inset 0 0 0 4px #212529, inset 0 0 0 8px #92cc41;
+        }
+        .game-card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .game-card .title {
+            word-break: break-word;
+        }
+        .game-card-footer {
+            margin-top: auto;
+        }
+        .nes-progress {
+            height: 20px;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 20px;
+            background: transparent;
+            position: relative;
+            top: -20px;
+            margin-bottom: -20px;
+            cursor: pointer;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 28px;
+            width: 14px;
+            background: #f0f0f0;
+            border: 4px solid #fff;
+            border-radius: 3px;
+        }
+        input[type=range]::-moz-range-thumb {
+            height: 20px;
+            width: 10px;
+            background: #f0f0f0;
+            border: 4px solid #fff;
+            border-radius: 3px;
+        }
+        .nes-badge {
+            display: inline-block;
+        }
+        #genre-filters::-webkit-scrollbar {
+            height: 8px;
+        }
+        #genre-filters::-webkit-scrollbar-track {
+            background: #212529;
+        }
+        #genre-filters::-webkit-scrollbar-thumb {
+            background-color: #495057;
+            border-radius: 4px;
+        }
+    </style>
 </head>
-<body class="fullscreen">
-<div class="container">
+<body>
 
-    <!-- Install button, hidden by default -->
-    <div id="installContainer" class="hidden">
-        <button id="butInstall" type="button">
-            Hola Mario
-        </button>
+    <div class="container mx-auto p-4 md:p-6">
+
+        <header class="text-center mb-6">
+             <h1 class="text-3xl md:text-4xl"><i class="nes-icon trophy is-large title-icon"></i> Co-op Deals Explorer <i class="nes-icon trophy is-large title-icon"></i></h1>
+            <p class="text-sm mt-4">Your 8-bit guide to 4-player co-op sales!</p>
+        </header>
+
+        <main>
+            <section id="visualizations" class="mb-6">
+                 <div class="text-center mb-6">
+                    <h2 class="text-2xl">Sale Analysis</h2>
+                 </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="nes-container is-dark with-title is-rounded">
+                         <p class="title is-light">Games by Price</p>
+                        <div class="chart-container">
+                            <canvas id="price-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="nes-container is-dark with-title is-rounded">
+                        <p class="title is-light">Genre Distribution</p>
+                        <div class="chart-container">
+                            <canvas id="genre-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="filters" class="nes-container is-dark with-title is-rounded mb-6">
+                <p class="title is-light">Filters & Sorting</p>
+                <div class="flex flex-col gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="price-slider">Max Price: <span id="price-value" class="text-blue-400">$70</span></label>
+                            <div class="pt-2">
+                                 <progress class="nes-progress is-primary" id="price-progress" value="70" max="70"></progress>
+                                 <input type="range" id="price-slider" min="0" max="70" value="70" step="1">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="sort-by">Sort By</label>
+                            <div class="nes-select is-dark">
+                                <select id="sort-by">
+                                    <option value="price_asc">Price: Low to High</option>
+                                    <option value="price_desc">Price: High to Low</option>
+                                    <option value="four_pack_asc">4-Pack: Low to High</option>
+                                    <option value="discount_desc">Discount %</option>
+                                    <option value="name_asc">Name: A-Z</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                         <label>Filter by Genre</label>
+                        <div id="genre-filters" class="flex items-center gap-2 mt-2 pb-2 overflow-x-auto">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="results">
+                <div class="mb-4">
+                    <h2 class="text-xl">
+                        <span id="game-count">0</span> Games Found!
+                    </h2>
+                </div>
+                <div id="game-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                </div>
+                <div id="no-results" class="hidden text-center py-16 nes-container is-dark is-rounded">
+                    <p class="text-xl">No Games Match!</p>
+                    <p class="text-xs mt-4">Try different filter settings.</p>
+                </div>
+            </section>
+
+        </main>
+         <footer class="text-center mt-10">
+            <p class="text-xs opacity-70">Powered by NES.css & Chart.js</p>
+        </footer>
     </div>
-</div>
-<script src="js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const gameData = [
+                { title: "Bloons TD 6", salePrice: 1.39, discount: 90, originalPrice: 13.90, genre: "Tower Defense", expertTake: "Deep tower defense with extensive meta-progression via 'Monkey Knowledge' unlocks.", fourPackDiscount: 10 },
+                { title: "Left 4 Dead 2", salePrice: 1.99, discount: 80, originalPrice: 9.95, genre: "Horde Shooter", expertTake: "Timeless zombie shooter; endlessly replayable with massive community mod support.", fourPackDiscount: 25 },
+                { title: "Spiritfarer", salePrice: 2.99, discount: 90, originalPrice: 29.90, genre: "Management Sim", expertTake: "Cozy and emotional game; supports 2-player co-op, but its value and progression are exceptional.", fourPackDiscount: 0 },
+                { title: "Borderlands 3", salePrice: 2.99, discount: 95, originalPrice: 59.80, genre: "Looter-Shooter", expertTake: "A massive AAA experience; bombastic action, deep skill trees, and billions of guns to loot.", fourPackDiscount: 0 },
+                { title: "The Swords of Ditto", salePrice: 2.99, discount: 80, originalPrice: 14.95, genre: "Action RPG", expertTake: "Charming roguelike adventure with meta-progression carrying over between runs.", fourPackDiscount: 0 },
+                { title: "Streets of Rogue", salePrice: 3.99, discount: 80, originalPrice: 19.95, genre: "Roguelite", expertTake: "Incredibly deep and chaotic gameplay; unlock new characters, items, and traits permanently.", fourPackDiscount: 10 },
+                { title: "Killing Floor", salePrice: 3.99, discount: 80, originalPrice: 19.95, genre: "Horde Shooter", expertTake: "Visceral wave-based shooter focused on teamwork. Features persistent leveling and perks.", fourPackDiscount: 25 },
+                { title: "Mindustry", salePrice: 3.99, discount: 60, originalPrice: 9.98, genre: "Automation", expertTake: "Complex hybrid of factory-building and tower defense with a full campaign and persistent tech-tree.", fourPackDiscount: 0 },
+                { title: "The Forest", salePrice: 4.00, discount: 80, originalPrice: 20.00, genre: "Survival-Craft", expertTake: "Terrifying survival experience; progression through crafting better gear and building a persistent base.", fourPackDiscount: 0 },
+                { title: "BattleBlock Theater", salePrice: 4.49, discount: 70, originalPrice: 14.97, genre: "Platformer", expertTake: "Hilarious and chaotic platforming puzzles. Unlock new character heads as you progress.", fourPackDiscount: 25 },
+                { title: "Castle Crashers", salePrice: 4.49, discount: 70, originalPrice: 14.97, genre: "Beat 'em Up", expertTake: "The quintessential 2D beat 'em up; features character leveling, stat allocation, and weapon collecting.", fourPackDiscount: 25 },
+                { title: "Enter the Gungeon", salePrice: 4.49, discount: 70, originalPrice: 14.97, genre: "Roguelike", expertTake: "Frantic twin-stick shooter where you permanently unlock new guns and items for future runs.", fourPackDiscount: 0 },
+                { title: "Terraria", salePrice: 4.99, discount: 50, originalPrice: 9.98, genre: "Survival-Craft", expertTake: "Legendary 2D sandbox with staggering progression; craft better gear to fight tougher bosses.", fourPackDiscount: 10 },
+                { title: "Hellbreach: Vegas", salePrice: 5.09, discount: 66, originalPrice: 14.97, genre: "Horde Shooter", expertTake: "Wave-based shooter with persistent progression; level up and buy perks to improve your chances.", fourPackDiscount: 0 },
+                { title: "Content Warning", salePrice: 5.59, discount: 30, originalPrice: 7.99, genre: "Horror", expertTake: "A viral hit about filming spooky videos. Earn money to buy better gear for your next trip.", fourPackDiscount: 0 },
+                { title: "PlateUp!", salePrice: 5.99, discount: 70, originalPrice: 19.97, genre: "Roguelite", expertTake: "Chaotic co-op cooking with deep roguelite progression; permanently unlock new dishes, layouts, and equipment.", fourPackDiscount: 15 },
+                { title: "Clone Drone", salePrice: 6.99, discount: 65, originalPrice: 19.97, genre: "Action", expertTake: "Voxel-robot sword fighting; features co-op challenges and permanent upgrades for your robot.", fourPackDiscount: 0 },
+                { title: "State of Decay 2", salePrice: 7.49, discount: 75, originalPrice: 29.99, genre: "Survival-Craft", expertTake: "Build a persistent community, level up survivor skills, and manage a long-term base in a zombie apocalypse.", fourPackDiscount: 0 },
+                { title: "Risk of Rain 2", salePrice: 6.24, discount: 75, originalPrice: 24.99, genre: "Roguelike", expertTake: "Masterful 3D roguelike where difficulty scales over time. Progression via unlocking characters and powerful items.", fourPackDiscount: 15 },
+                { title: "Deep Rock Galactic", salePrice: 9.89, discount: 67, originalPrice: 29.97, genre: "Horde Shooter", expertTake: "The ultimate co-op experience with deep character progression, promotions, and hundreds of weapon overclocks.", fourPackDiscount: 10 },
+                { title: "Halo: MCC", salePrice: 9.99, discount: 75, originalPrice: 39.96, genre: "FPS", expertTake: "Multiple legendary campaigns fully playable in co-op; an incredible amount of content and unlocks.", fourPackDiscount: 0 },
+                { title: "Monster Hunter: World", salePrice: 9.89, discount: 67, originalPrice: 29.99, genre: "Action RPG", expertTake: "Hunt massive monsters to craft gear from their parts. The core progression loop is legendary and satisfying.", fourPackDiscount: 10 },
+                { title: "Valheim", salePrice: 9.99, discount: 50, originalPrice: 19.98, genre: "Survival-Craft", expertTake: "Viking-themed survival where progression is tied to defeating bosses to unlock new crafting tiers.", fourPackDiscount: 0 },
+                { title: "Fallout 76", salePrice: 10.00, discount: 75, originalPrice: 40.00, genre: "Online RPG", expertTake: "Explore post-apocalyptic West Virginia; features deep character building with S.P.E.C.I.A.L. stats and perk cards.", fourPackDiscount: 0 },
+                { title: "Roboquest", salePrice: 12.49, discount: 50, originalPrice: 24.98, genre: "Roguelite", expertTake: "Fast-paced FPS roguelite with persistent base camp upgrades and unlockable classes.", fourPackDiscount: 0 },
+                { title: "PowerWash Simulator", salePrice: 12.49, discount: 50, originalPrice: 24.98, genre: "Simulation", expertTake: "Relaxing zen co-op. Earn money from jobs to buy better washing equipment.", fourPackDiscount: 0 },
+                { title: "Gunfire Reborn", salePrice: 12.99, discount: 35, originalPrice: 19.98, genre: "Roguelite", expertTake: "Level-based adventure with FPS gameplay, roguelite elements, and permanent talent upgrades.", fourPackDiscount: 10 },
+                { title: "Project Zomboid", salePrice: 13.39, discount: 33, originalPrice: 19.99, genre: "Survival-Craft", expertTake: "The ultimate hardcore zombie survival sim where your character's skills improve with use in a persistent world.", fourPackDiscount: 25 },
+                { title: "Raft", salePrice: 13.39, discount: 33, originalPrice: 19.99, genre: "Survival-Craft", expertTake: "Survive on a floating raft, unlocking new crafting blueprints via research to progress through the story.", fourPackDiscount: 0 },
+                { title: "Core Keeper", salePrice: 13.99, discount: 30, originalPrice: 19.99, genre: "Survival-Craft", expertTake: "Mining sandbox adventure with skill trees, crafting progression, and boss-gated content.", fourPackDiscount: 0 },
+                { title: "Warhammer: Darktide", salePrice: 15.99, discount: 60, originalPrice: 39.98, genre: "Horde Shooter", expertTake: "Brutal co-op shooter with deep character classes, skill trees, and a complex loot/crafting system.", fourPackDiscount: 0 },
+                { title: "Door Kickers 2", salePrice: 18.74, discount: 25, originalPrice: 24.99, genre: "Tactical Strategy", expertTake: "Top-down tactical shooter. Progression comes from unlocking new weapons and gear for your squad.", fourPackDiscount: 0 },
+                { title: "Grounded", salePrice: 19.99, discount: 50, originalPrice: 39.99, genre: "Survival-Craft", expertTake: "Survive the backyard by analyzing materials to unlock crafting recipes and finding Milk Molars for permanent boosts.", fourPackDiscount: 0 },
+                { title: "Palworld", salePrice: 22.49, discount: 25, originalPrice: 29.98, genre: "Survival-Craft", expertTake: "'Pokémon with guns' featuring base building, tech tree progression, and leveling up your character and Pals.", fourPackDiscount: 0 },
+                { title: "Icarus", salePrice: 22.74, discount: 35, originalPrice: 34.99, genre: "Survival-Craft", expertTake: "Session-based PvE survival with persistent character talents and an orbital workshop tech tree.", fourPackDiscount: 0 },
+                { title: "Enshrouded", salePrice: 24.00, discount: 20, originalPrice: 30.00, genre: "Survival-Craft", expertTake: "A survival action RPG with a vast, flexible skill tree and extensive crafting/building progression.", fourPackDiscount: 0 },
+                { title: "Remnant 2", salePrice: 29.99, discount: 40, originalPrice: 49.99, genre: "Looter-Shooter", expertTake: "'Souls-like with guns' featuring deep archetype progression, procedural worlds, and extensive loot.", fourPackDiscount: 0 },
+                { title: "7 Days to Die", salePrice: 26.99, discount: 40, originalPrice: 44.99, genre: "Survival-Craft", expertTake: "A unique mix of FPS and survival with deep skill trees, perks, and a book-based recipe system.", fourPackDiscount: 0 },
+                { title: "Satisfactory", salePrice: 27.99, discount: 30, originalPrice: 39.99, genre: "Automation", expertTake: "A first-person factory builder. Progression is unlocking new tech tiers to build bigger and better automations.", fourPackDiscount: 0 },
+                { title: "Diablo 4", salePrice: 34.99, discount: 50, originalPrice: 69.99, genre: "Action RPG", expertTake: "The premier AAA action-RPG experience; progression is centered on leveling, skill trees, and endless loot grinding.", fourPackDiscount: 0 },
+                { title: "Helldivers 2", salePrice: 31.99, discount: 20, originalPrice: 39.99, genre: "Horde Shooter", expertTake: "Chaotic AAA shooter with persistent progression through unlocking new weapons, armor, and powerful stratagems.", fourPackDiscount: 0 },
+                { title: "ELDEN RING", salePrice: 35.99, discount: 40, originalPrice: 59.99, genre: "Action RPG", expertTake: "A landmark open-world RPG with deep character leveling, weapon upgrades, and spell collecting.", fourPackDiscount: 0 },
+                { title: "Warframe", salePrice: 0, discount: 100, originalPrice: 0, genre: "Looter-Shooter", expertTake: "A massive F2P online action game with years of content. Progression through collecting and leveling hundreds of items.", fourPackDiscount: 0 }
+            ];
+
+            const priceSlider = document.getElementById('price-slider');
+            const priceProgress = document.getElementById('price-progress');
+            const priceValue = document.getElementById('price-value');
+            const sortBy = document.getElementById('sort-by');
+            const genreFiltersContainer = document.getElementById('genre-filters');
+            const gameList = document.getElementById('game-list');
+            const gameCount = document.getElementById('game-count');
+            const noResults = document.getElementById('no-results');
+
+            let selectedGenres = [];
+            let priceChart, genreChart;
+
+            Chart.defaults.font.family = "'Press Start 2P', cursive";
+            Chart.defaults.color = '#ffffff';
+            Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.2)';
+
+            gameData.forEach(game => {
+                const basePrice = game.salePrice * 4;
+                game.fourPackPrice = game.fourPackDiscount > 0 ? basePrice * (1 - game.fourPackDiscount / 100) : basePrice;
+            });
+
+            const uniqueGenres = [...new Set(gameData.map(game => game.genre))].sort();
+
+            function setupGenreFilters() {
+                uniqueGenres.forEach(genre => {
+                    const button = document.createElement('button');
+                    button.dataset.genre = genre;
+                    button.textContent = genre;
+                    button.className = 'nes-btn is-dark is-small flex-shrink-0';
+                    button.addEventListener('click', () => {
+                        button.classList.toggle('is-primary');
+                        button.classList.toggle('is-dark');
+                        if (selectedGenres.includes(genre)) {
+                            selectedGenres = selectedGenres.filter(g => g !== genre);
+                        } else {
+                            selectedGenres.push(genre);
+                        }
+                        updateDisplay();
+                    });
+                    genreFiltersContainer.appendChild(button);
+                });
+            }
+
+            function renderGames(games) {
+                gameList.innerHTML = '';
+                noResults.classList.toggle('hidden', games.length > 0);
+                gameList.classList.toggle('hidden', games.length === 0);
+
+                games.forEach(game => {
+                    const card = document.createElement('div');
+                    card.className = 'nes-container with-title is-dark game-card';
+                    const isFree = game.salePrice === 0;
+
+                    let priceHtml = `
+                        <div class="flex flex-wrap justify-center items-center gap-x-3 gap-y-2 text-sm">
+                             <span class="nes-badge"><span class="is-success">$${game.salePrice.toFixed(2)}</span></span>
+                             <span class="nes-badge"><span class="is-error">-${game.discount}%</span></span>
+                             <p class="opacity-70 line-through">$${game.originalPrice.toFixed(2)}</p>
+                        </div>`;
+
+                    if (isFree) {
+                         priceHtml = `<div class="flex justify-center"><span class="nes-badge is-splited"><span class="is-dark">Price</span><span class="is-success">FREE!</span></span></div>`;
+                    }
+                    
+                    let fourPackHtml = '';
+                    if (!isFree) {
+                        fourPackHtml = `
+                        <div class="nes-container is-dark is-rounded mt-4">
+                             <p class="text-xs mb-2"><i class="nes-icon coin is-small"></i> 4-Pack Deal:</p>
+                             <div class="flex justify-between items-center">
+                                <span class="text-lg text-yellow-400">$${game.fourPackPrice.toFixed(2)}</span>
+                                ${game.fourPackDiscount > 0 ? `<span class="nes-badge"><span class="is-warning">-${game.fourPackDiscount}%</span></span>` : ''}
+                             </div>
+                        </div>`;
+                    }
+
+
+                    card.innerHTML = `
+                        <p class="title">${game.title}</p>
+                        <div class="game-card-content">
+                            <p class="text-xs mb-4">${game.expertTake}</p>
+                            <p class="text-xs mb-4">Genre: <span class="text-blue-400">${game.genre}</span></p>
+                            <div class="game-card-footer">
+                               ${priceHtml}
+                               ${fourPackHtml}
+                            </div>
+                        </div>
+                    `;
+                    gameList.appendChild(card);
+                });
+            }
+
+            function updateCharts(games) {
+                updatePriceChart(games);
+                updateGenreChart(games);
+            }
+
+            function updatePriceChart(games) {
+                const priceRanges = { '<$5': 0, '$5-$10': 0, '$10-$20': 0, '$20-$40': 0, '$40+': 0 };
+                games.forEach(game => {
+                    if (game.salePrice < 5) priceRanges['<$5']++;
+                    else if (game.salePrice < 10) priceRanges['$5-$10']++;
+                    else if (game.salePrice < 20) priceRanges['$10-$20']++;
+                    else if (game.salePrice < 40) priceRanges['$20-$40']++;
+                    else priceRanges['$40+']++;
+                });
+
+                const ctx = document.getElementById('price-chart').getContext('2d');
+                if (priceChart) priceChart.destroy();
+                priceChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(priceRanges),
+                        datasets: [{
+                            label: 'Games',
+                            data: Object.values(priceRanges),
+                            backgroundColor: ['#209cee', '#92cc41', '#f7d51d', '#e76e55', '#e74c3c'],
+                            borderColor: '#ffffff',
+                            borderWidth: 2,
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+                        scales: { 
+                            y: { ticks: { stepSize: 1, color: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.2)' } },
+                            x: { ticks: { color: '#fff' }, grid: { display: false } }
+                        }
+                    }
+                });
+            }
+
+            function updateGenreChart(games) {
+                const genreCounts = {};
+                games.forEach(game => { genreCounts[game.genre] = (genreCounts[game.genre] || 0) + 1; });
+                const sortedGenres = Object.entries(genreCounts).sort(([,a],[,b]) => b-a);
+                const labels = sortedGenres.map(item => item[0]);
+                const data = sortedGenres.map(item => item[1]);
+                const chartColors = ['#e74c3c', '#9b59b6', '#3498db', '#f1c40f', '#2ecc71', '#e67e22', '#1abc9c', '#34495e', '#209cee', '#f368e0'];
+
+                const ctx = document.getElementById('genre-chart').getContext('2d');
+                if (genreChart) genreChart.destroy();
+                genreChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{ data: data, backgroundColor: chartColors, borderColor: '#212529', borderWidth: 4 }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#fff' } } } }
+                });
+            }
+            
+            function updateDisplay() {
+                let filteredGames = gameData.filter(game => game.salePrice <= parseFloat(priceSlider.value));
+                if (selectedGenres.length > 0) {
+                    filteredGames = filteredGames.filter(game => selectedGenres.includes(game.genre));
+                }
+
+                switch (sortBy.value) {
+                    case 'price_asc': filteredGames.sort((a, b) => a.salePrice - b.salePrice); break;
+                    case 'price_desc': filteredGames.sort((a, b) => b.salePrice - a.salePrice); break;
+                    case 'discount_desc': filteredGames.sort((a, b) => b.discount - a.discount); break;
+                    case 'name_asc': filteredGames.sort((a, b) => a.title.localeCompare(b.title)); break;
+                    case 'four_pack_asc': 
+                        filteredGames.sort((a, b) => {
+                            const priceA = a.isFree ? Infinity : a.fourPackPrice;
+                            const priceB = b.isFree ? Infinity : b.fourPackPrice;
+                            return priceA - priceB;
+                        });
+                        break;
+                }
+
+                gameCount.textContent = filteredGames.length;
+                renderGames(filteredGames);
+                updateCharts(filteredGames);
+            }
+
+            priceSlider.addEventListener('input', () => {
+                priceValue.textContent = `$${priceSlider.value}`;
+                priceProgress.value = priceSlider.value;
+                updateDisplay();
+            });
+            sortBy.addEventListener('change', updateDisplay);
+
+            setupGenreFilters();
+            updateDisplay();
+        });
+    </script>
 </body>
 </html>
