@@ -11,7 +11,7 @@ from html import escape as e
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = json.load(open(os.path.join(ROOT, "data/site.json"), encoding="utf-8"))
 SITE = S["siteUrl"]
-V = {"css": 8, "js": 5}
+V = {"css": 9, "js": 6}
 LANGS = S["langs"]
 ICONS = json.load(open(os.path.join(ROOT, "data/tech-icons.json"), encoding="utf-8"))  # Simple Icons, CC0
 
