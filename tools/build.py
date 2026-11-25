@@ -11,7 +11,7 @@ from html import escape as e
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = json.load(open(os.path.join(ROOT, "data/site.json"), encoding="utf-8"))
 SITE = S["siteUrl"]
-V = {"css": 4, "js": 3}
+V = {"css": 5, "js": 3}
 LANGS = S["langs"]
 
 
@@ -135,8 +135,8 @@ def page(key):
 {masthead(L, key, "./", other_href)}
 <main id="main">
 <section class="wrap hero" aria-labelledby="t-intro">
-<p class="eyebrow">{e(it['role'])}</p>
 <h1 id="t-intro">{e(S['fullName'])}</h1>
+<p class="tagline">{e(it['role'])}</p>
 <div class="hero-text">{intro}</div>
 </section>
 
