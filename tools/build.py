@@ -11,7 +11,7 @@ from html import escape as e
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = json.load(open(os.path.join(ROOT, "data/site.json"), encoding="utf-8"))
 SITE = S["siteUrl"]
-V = {"css": 9, "js": 6}
+V = {"css": 10, "js": 6}
 LANGS = S["langs"]
 ICONS = json.load(open(os.path.join(ROOT, "data/tech-icons.json"), encoding="utf-8"))  # Simple Icons, CC0
 
@@ -93,6 +93,7 @@ def side(L, key, other_href, home="./"):
     return f"""<header class="side">
 {tools_row(L, key, other_href)}
 <h1 id="t-intro"><a href="{home}">{e(it['greeting'])}</a></h1>
+<p class="hud" aria-hidden="true">{e(ui['hud'])}</p>
 <p class="lead">{e(it['lead'])}</p>
 <nav aria-label="{e(ui['navLabel'])}"><ul class="toc">{nav}</ul></nav>
 <p class="social">{ext(S['links']['linkedin'], I_IN, 'LinkedIn')}{ext(S['links']['github'], I_GH, 'GitHub')}</p>
