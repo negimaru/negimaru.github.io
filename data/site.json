@@ -36,11 +36,11 @@
     "photoAlt": "Victor Martin"
    },
    "intro": {
-    "greeting": "¡Hola! Soy Victor Martin",
+    "greeting": "Victor Martin",
     "role": "Desarrollador frontend en Torrox, Málaga",
-    "lead": "Hago frontend desde hace diez años: interfaces, sistemas de diseño y los pipelines que los llevan a producción.",
+    "lead": "Desarrollador frontend en Torrox. Diez años haciendo interfaces, sistemas de diseño y los pipelines que los llevan a producción.",
     "paras": [
-     "Desde 2022 llevo el **frontend de ifeel**. Antes pasé cinco años en **PcComponentes**, donde fui la primera persona de frontend, **empecé la migración a React** y acabé **liderando un equipo de siete**. También he trabajado en **Freepik** y **Golden Race**, y para clientes como **motor.es** o **Deutsche Bahn**.",
+     "Desde 2022 llevo el **frontend de ifeel**. Antes pasé cinco años en **PcComponentes**: entré como primera persona de frontend, **empecé la migración a React**, **me encargué de los Black Friday** y acabé **liderando un equipo de siete**. Por el camino también pasé por **Freepik** y **Golden Race**, e hice proyectos para **motor.es** y **Deutsche Bahn**.",
      "De lo que más orgulloso estoy es del **sistema de temas de ifeel, escrito a mano sobre Tailwind**. Y fuera del trabajo hago **juegos**: en Three.js, en Canvas o mapas para Doom."
     ]
    },
@@ -242,11 +242,11 @@
     "photoAlt": "Victor Martin"
    },
    "intro": {
-    "greeting": "Hi! I'm Victor Martin",
+    "greeting": "Victor Martin",
     "role": "Frontend developer in Torrox, Málaga, Spain",
-    "lead": "I've been doing frontend for ten years: interfaces, design systems and the pipelines that ship them to production.",
+    "lead": "Frontend developer in Torrox, Spain. Ten years of interfaces, design systems and the pipelines that ship them to production.",
     "paras": [
-     "Since 2022 I've led **frontend at ifeel**. Before that I spent five years at **PcComponentes**, where I was the first frontend hire, **started the move to React** and ended up **leading a team of seven**. I've also worked at **Freepik** and **Golden Race**, and for clients such as **motor.es** and **Deutsche Bahn**.",
+     "Since 2022 I've led **frontend at ifeel**. Before that I spent five years at **PcComponentes**: I joined as the first frontend hire, **started the move to React**, **owned Black Friday** and ended up **leading a team of seven**. Along the way I also worked at **Freepik** and **Golden Race**, and built projects for **motor.es** and **Deutsche Bahn**.",
      "What I'm proudest of is **ifeel's theme system, written by hand on top of Tailwind**. And outside work I make **games**: in Three.js, in Canvas, or maps for Doom."
     ]
    },
