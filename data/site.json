@@ -1,215 +1,195 @@
 {
  "siteUrl": "https://negimaru.github.io/",
- "name": "Victor Martin",
  "fullName": "Victor Martin Rodriguez",
  "links": {
   "linkedin": "https://www.linkedin.com/in/victor-martin-rodriguez/",
-  "github": "https://github.com/negimaru"
+  "github": "https://github.com/negimaru",
+  "repo": "https://github.com/negimaru/negimaru.github.io"
  },
  "langs": {
   "es": {
    "path": "",
    "htmlLang": "es",
    "locale": "es_ES",
-   "title": "Victor Martin · Senior Frontend Developer y arquitecto de software",
-   "description": "Diez años construyendo y escalando frontends, de la arquitectura en blanco a producción con mucho tráfico. Hoy, responsable de frontend en ifeel. Desde Torrox, Málaga.",
+   "title": "Victor Martin Rodriguez, desarrollador frontend",
+   "description": "Desarrollador frontend en Torrox (Málaga). Responsable de frontend en ifeel desde 2022; antes, cinco años en PcComponentes.",
    "ui": {
     "skip": "Saltar al contenido",
-    "nav": ["Ahora", "Caso", "Trayectoria", "Proyectos", "Contacto"],
-    "navLabel": "Secciones",
     "otherLang": "English",
-    "otherLangShort": "EN",
-    "themeToDark": "Cambiar a modo oscuro",
-    "themeToLight": "Cambiar a modo claro",
-    "stack": "Stack",
-    "visit": "Ver la web",
-    "code": "Ver código en GitHub",
+    "toDark": "Modo oscuro",
+    "toLight": "Modo claro",
     "newTab": "(se abre en otra pestaña)",
-    "education": "Formación",
-    "languages": "Idiomas",
     "notFoundTitle": "Esta página no existe",
     "notFoundBody": "Puede que el enlace sea antiguo.",
     "notFoundBack": "Volver al inicio"
    },
-   "hero": {
-    "kicker": "Senior Frontend Developer · Arquitectura de software",
-    "where": "Torrox, Málaga",
-    "lead": "Diez años construyendo y escalando frontends: de la arquitectura en blanco a producción con mucho tráfico.",
-    "body": "Combino el código del día a día con el liderazgo técnico: pipelines de CI/CD, migraciones de código heredado, equipos multidisciplinares y decisiones de arquitectura que duran más que el sprint. Trabajo sobre todo con React, TypeScript, Vite y Vitest, y me importan el rendimiento, los tests y la experiencia de quien desarrolla.",
-    "cta": "Ver mi trabajo"
+   "intro": {
+    "role": "Desarrollador frontend en Torrox, Málaga",
+    "paras": [
+     "Llevo diez años haciendo frontend. Desde 2022 soy el responsable de frontend en ifeel, una plataforma de bienestar emocional para empresas. Antes pasé cinco años en PcComponentes, donde fui la primera persona de frontend y acabé llevando un equipo de siete.",
+     "Lo que más me interesa es lo que no se ve: cómo se despliega una web, cómo se mantiene dentro de dos años y cuánto pesa.",
+     "Me encuentras en [LinkedIn](linkedin) y en [GitHub](github)."
+    ]
    },
-   "now": {
-    "label": "Ahora",
-    "title": "Responsable de frontend en ifeel",
-    "meta": "Desde octubre de 2022",
-    "product": "ifeel es una plataforma de bienestar emocional para empresas. Llevo su frontend: tres plataformas que comparten lógica, componentes y forma de desplegarse.",
-    "highlights": [
-     {"title": "Sistema de temas sobre Tailwind, escrito a mano", "body": "Un tema propio construido directamente sobre Tailwind, sin depender de un kit de terceros. Junto con la optimización de los builds en Vite y Webpack, los bundles bajaron hasta un 90 %."},
-     {"title": "Todos los pipelines de frontend", "body": "Migración de Bitbucket a GitLab con un pipeline centralizado y guiado por variables que unifica los despliegues de todos los squads. Gitflow, Bun para acelerar el ciclo y despliegues a producción bajo demanda en 4 minutos sobre AWS S3."},
-     {"title": "Arquitectura", "body": "Una librería única en Storybook y un Chat-Core que centraliza la lógica de las tres plataformas. Resultado: un 30 % menos de deuda técnica."},
-     {"title": "Soluciones fullstack", "body": "Cuando el problema no se acaba en el navegador, lo sigo hasta el backend y lo resuelvo de punta a punta."},
-     {"title": "IA en el equipo", "body": "Dirijo el comité de adopción de IA: Claude y Gemini dentro de los pipelines para generar changelogs e interpretar los tests. También coordino a Frontend y QA en los tests E2E con Playwright y Cypress."}
-    ],
-    "stack": ["React", "TypeScript", "Tailwind CSS", "Vite", "Vitest", "Storybook", "GitLab CI", "Bun", "AWS S3", "Playwright", "Ruby on Rails"]
+   "work": {
+    "title": "Trabajo",
+    "jobs": [
+     {"years": "2022 – hoy", "company": "ifeel", "role": "Responsable de frontend", "body": [
+      "Escribí a mano, sobre Tailwind, el sistema de temas del producto. También monté la librería de componentes en Storybook y el Chat-Core que comparten nuestras tres plataformas.",
+      "Llevo todos los pipelines de frontend. Pasamos de Bitbucket a GitLab con un único pipeline para todos los equipos, y ahora desplegar a producción lleva unos cuatro minutos.",
+      "Cuando el problema no está en el navegador, bajo al backend y lo arreglo ahí. Y estoy en el comité que decide cómo usamos la IA en el equipo."
+     ], "stack": "React, TypeScript, Tailwind, Vite, Vitest, Storybook, GitLab CI, Bun, AWS S3 y Playwright."},
+     {"years": "2022", "company": "Freepik", "role": "Frontend Developer", "body": []},
+     {"years": "2017 – 2022", "company": "PcComponentes", "role": "Senior Frontend Developer", "body": [
+      "Entré como primer desarrollador de frontend y terminé llevando un equipo de siete personas. Pasamos la tienda de Symfony y jQuery a React y TypeScript, preparamos la web para que el Black Friday no la tumbara y creamos el primer Storybook y el primer repositorio de paquetes internos."
+     ], "stack": ""},
+     {"years": "2017", "company": "Koalum y trabajo freelance", "role": "Full Stack Developer · Torre del Mar y Edimburgo", "body": [
+      "Aplicaciones a medida en PHP, JavaScript y Angular 2."
+     ], "stack": ""},
+     {"years": "2016", "company": "Golden Race", "role": "Front End Developer", "body": [
+      "Apuestas deportivas virtuales que se emitían por satélite en zonas de África con muy poca conexión. Allí aprendí a contar kilobytes."
+     ], "stack": ""},
+     {"years": "2015 – 2016", "company": "Grupo Vid", "role": "Web Developer", "body": [
+      "Un bingo multijugador para Facebook, con chat y pagos, y apps híbridas con PhoneGap."
+     ], "stack": ""},
+     {"years": "2015", "company": "Glanzkinder", "role": "Front-End Developer · Colonia", "body": [
+      "Herramientas internas para Deutsche Bahn, con AngularJS."
+     ], "stack": ""}
+    ]
    },
    "case": {
-    "label": "Caso real",
-    "title": "Nadia Fitness Dance Studio",
-    "meta": "Web para un estudio de baile y fitness en Torrox Costa · 2026",
-    "body": "De la primera propuesta al dominio propio. Una web pequeña, pero hecha con el mismo cuidado que un producto grande.",
-    "points": [
-     "Generador estático propio: textos, clases y horario viven en un JSON y un script en Python construye cada página.",
-     "Accesibilidad comprobada con axe: 0 errores en móvil y escritorio, en modo claro y oscuro.",
-     "Funciona sin JavaScript y no se desborda ni a 320 px de ancho.",
-     "SEO local: datos estructurados, sitemap y dominio propio con HTTPS.",
-     "Vídeo de portada con botón de pausa; quien pide menos movimiento solo ve la imagen."
+    "title": "Un encargo reciente",
+    "name": "Nadia Fitness Dance Studio",
+    "years": "2026",
+    "body": [
+     "La web de un estudio de baile y fitness en Torrox Costa. Es pequeña, pero la hice como hago las grandes. Los textos y el horario están en un JSON y un script genera las páginas. axe no encuentra ningún error de accesibilidad, la web funciona sin JavaScript y el vídeo de la portada se puede parar.",
+     "Está publicada en [nadiafitnessdance.es](https://nadiafitnessdance.es/)."
     ],
-    "url": "https://nadiafitnessdance.es/",
-    "urlLabel": "nadiafitnessdance.es",
-    "shotAlt": "Portada de la web de Nadia Fitness Dance Studio en modo oscuro"
+    "img": "nadia.webp", "w": 1200, "h": 750,
+    "alt": "Portada de la web de Nadia Fitness Dance Studio"
    },
-   "career": {
-    "label": "Trayectoria",
-    "title": "Diez años de frontend",
-    "jobs": [
-     {"company": "ifeel", "role": "Responsable de frontend (Frontend Platform)", "dates": "oct. 2022 – hoy", "place": "Madrid", "body": ""},
-     {"company": "Freepik Company", "role": "Frontend Developer", "dates": "mar. 2022 – oct. 2022", "place": "Málaga", "body": ""},
-     {"company": "PcComponentes", "role": "Senior Frontend Developer", "dates": "jun. 2017 – mar. 2022", "body": "Primera persona contratada en frontend; llegué a liderar un equipo de 7 y a hacer de Product Owner técnico. Migración de Symfony y jQuery a React, TypeScript y Styled Components. Infraestructura de Black Friday sin caídas, el primer Storybook y el primer repositorio interno de paquetes de la empresa, y un entorno de frontend en Docker."},
-     {"company": "Freelance", "role": "Full Stack Developer", "dates": "mar. 2017 – may. 2017", "place": "Edimburgo", "body": "Angular 2, PHP y LESS."},
-     {"company": "Koalum", "role": "Front-End Developer", "dates": "ene. 2017 – abr. 2017", "place": "Torre del Mar", "body": "Aplicaciones web y herramientas de gestión a medida en PHP y JavaScript, pensadas para integrarse en equipos externos."},
-     {"company": "Golden Race", "role": "Front End Developer", "dates": "jul. 2016 – dic. 2016", "place": "Málaga", "body": "Frontend de apuestas deportivas virtuales emitidas por satélite en zonas de África con poco ancho de banda: cada kilobyte del bundle y de los mensajes costaba dinero."},
-     {"company": "Grupo Vid", "role": "Web Developer", "dates": "oct. 2015 – jul. 2016", "place": "Parque Tecnológico de Andalucía", "body": "Bingo multijugador en tiempo real para Facebook, con chat y pasarela de pago, y apps híbridas con PhoneGap. Proyectos: Meeting Bingo, Play And Progress y Play And Gaming."},
-     {"company": "Glanzkinder GmbH", "role": "Front-End Developer", "dates": "mar. 2015 – jun. 2015", "place": "Colonia", "body": "Herramientas internas para Deutsche Bahn: venta de billetes y seguimiento de trenes en tiempo real, con AngularJS y APIs REST."}
-    ]
-   },
-   "projects": {
-    "label": "Proyectos",
-    "title": "Por mi cuenta",
+   "play": {
+    "title": "Fuera del trabajo",
+    "intro": "En casa hago juegos y otros experimentos. Estos son algunos:",
     "items": [
-     {"name": "DyslexicFontReplacer", "body": "Extensión que cambia todas las fuentes de una web por una tipografía pensada para personas con dislexia.", "tags": ["JavaScript", "Accesibilidad"], "repo": "https://github.com/negimaru/DyslexicFontReplacer"},
-     {"name": "mako_framework", "body": "Los menús originales de Final Fantasy VII recreados en HTML.", "tags": ["JavaScript", "CSS"], "repo": "https://github.com/negimaru/mako_framework"},
-     {"name": "fTime", "body": "Plugin para seguir las carreras de Fórmula 1 en directo. 2018.", "tags": ["JavaScript"], "repo": ""}
+     {"name": "MOONVERSE", "meta": "Three.js y Tone.js", "body": "Un duelo de solos de guitarra por turnos entre figuras enmascaradas, como si fuera una cinta VHS que alguien encontró. Todo lo que suena se graba, y al final te llevas la canción en .wav y el combate en vídeo.", "img": "moonverse.webp", "alt": "Una figura enmascarada toca la guitarra bajo la luna llena, sobre un círculo de símbolos"},
+     {"name": "Homenaje a Cannon Fodder", "meta": "TypeScript y Canvas", "body": "Un homenaje al Cannon Fodder de 1993, escrito desde cero y sin motor. El terreno, los sprites y el sonido se generan en código.", "img": "cannon.webp", "alt": "Mapa de selva visto desde arriba, con el escuadrón y el minimapa"},
+     {"name": "Kerbal Lite", "meta": "Three.js", "body": "Un cohete que despega de un planeta con física newtoniana. El reto es llegar a la órbita.", "img": "kerbal.webp", "alt": "Un cohete despega de un planeta verde, con la telemetría en pantalla"},
+     {"name": "Japanese Temple", "meta": "WAD para GZDoom", "body": "Dos mapas para Doom, un templo y un castillo. Las texturas de tatami, shoji, madera y tejas salen de scripts en Python.", "img": "doom.webp", "alt": "Ocho texturas en píxeles: tatami, grava, shoji, piedra, tejas grises y rojas y dos maderas"},
+     {"name": "Pognanza", "meta": "Lua y LÖVE, con Daniel", "body": "Un roguelike de estrategia por turnos en el que montas tu tazo pieza a pieza. Lo hacemos entre dos, y esta es mi versión.", "img": "pognanza.webp", "alt": "Pantalla de elegir dificultad con tres opciones: Novato, Normal y Desafío"}
+    ],
+    "alsoTitle": "Y en GitHub",
+    "also": [
+     "[DyslexicFontReplacer](https://github.com/negimaru/DyslexicFontReplacer): una extensión que cambia las fuentes de cualquier web por una tipografía pensada para la dislexia.",
+     "[mako_framework](https://github.com/negimaru/mako_framework): menús de RPG clásico hechos solo con HTML y CSS."
     ]
    },
-   "education": [
-    {"title": "Posgrado en Informática Forense y Ciberseguridad", "school": "Universidad de Málaga", "dates": "2016 – 2017"},
-    {"title": "CFGS Desarrollo de Aplicaciones Multiplataforma", "school": "IES Portada Alta", "dates": "2015 – 2016"},
-    {"title": "CFGS Desarrollo de Aplicaciones Web", "school": "IES Campanillas", "dates": "2012 – 2015"},
-    {"title": "CFGM Sistemas Microinformáticos y Redes", "school": "IES Jorge Guillén", "dates": "2009 – 2011"}
-   ],
-   "languageList": [
-    {"name": "Español", "level": "Nativo"},
-    {"name": "Inglés", "level": "C1 · Cambridge"},
-    {"name": "Alemán", "level": "A2 · aprendido trabajando en Alemania"}
-   ],
-   "contact": {
-    "label": "Contacto",
-    "title": "¿Hablamos?",
-    "body": "Si tienes un frontend que escalar, un pipeline que ordenar o una web que hacer bien, escríbeme."
+   "education": {
+    "title": "Formación",
+    "items": [
+     {"years": "2016 – 2017", "text": "Posgrado en Informática Forense y Ciberseguridad, Universidad de Málaga"},
+     {"years": "2015 – 2016", "text": "CFGS Desarrollo de Aplicaciones Multiplataforma, IES Portada Alta"},
+     {"years": "2012 – 2015", "text": "CFGS Desarrollo de Aplicaciones Web, IES Campanillas"},
+     {"years": "2009 – 2011", "text": "CFGM Sistemas Microinformáticos y Redes, IES Jorge Guillén"}
+    ]
    },
-   "footer": "Hecho a mano: HTML y CSS generados desde un JSON, sin frameworks ni rastreadores."
+   "languages": {
+    "title": "Idiomas",
+    "text": "Español nativo, inglés C1 (Cambridge) y alemán A2, que aprendí trabajando en Colonia."
+   },
+   "footer": "Esta página la genera un script de Python a partir de un JSON. El [código está en GitHub](repo)."
   },
   "en": {
    "path": "en/",
    "htmlLang": "en",
    "locale": "en_GB",
-   "title": "Victor Martin · Senior Frontend Developer & Software Architect",
-   "description": "A decade building and scaling frontends, from greenfield architecture to high-traffic production. Currently leading frontend at ifeel. Based in Torrox, Málaga, Spain.",
+   "title": "Victor Martin Rodriguez, frontend developer",
+   "description": "Frontend developer in Torrox, Málaga. Frontend lead at ifeel since 2022; before that, five years at PcComponentes.",
    "ui": {
     "skip": "Skip to content",
-    "nav": ["Now", "Case", "Career", "Projects", "Contact"],
-    "navLabel": "Sections",
     "otherLang": "Español",
-    "otherLangShort": "ES",
-    "themeToDark": "Switch to dark mode",
-    "themeToLight": "Switch to light mode",
-    "stack": "Stack",
-    "visit": "Visit the site",
-    "code": "View code on GitHub",
+    "toDark": "Dark mode",
+    "toLight": "Light mode",
     "newTab": "(opens in a new tab)",
-    "education": "Education",
-    "languages": "Languages",
     "notFoundTitle": "This page doesn't exist",
     "notFoundBody": "The link may be out of date.",
     "notFoundBack": "Back to the home page"
    },
-   "hero": {
-    "kicker": "Senior Frontend Developer · Software Architecture",
-    "where": "Torrox, Málaga, Spain",
-    "lead": "A decade building and scaling frontends, from greenfield architecture to high-traffic production.",
-    "body": "I combine hands-on engineering with technical leadership: CI/CD pipelines, legacy migrations, cross-functional teams and architectural decisions that outlast the sprint. My stack centres on React, TypeScript, Vite and Vitest, with a strong focus on performance, testability and developer experience.",
-    "cta": "See my work"
+   "intro": {
+    "role": "Frontend developer in Torrox, Málaga, Spain",
+    "paras": [
+     "I've been doing frontend for ten years. Since 2022 I've led frontend at ifeel, an emotional well-being platform for companies. Before that I spent five years at PcComponentes, where I was the first frontend hire and ended up leading a team of seven.",
+     "What interests me most is the part nobody sees: how a site gets deployed, how it stays maintainable two years later, and how much it weighs.",
+     "You can find me on [LinkedIn](linkedin) and [GitHub](github)."
+    ]
    },
-   "now": {
-    "label": "Now",
-    "title": "Leading frontend at ifeel",
-    "meta": "Since October 2022",
-    "product": "ifeel is an emotional well-being platform for companies. I lead its frontend: three platforms that share logic, components and the way they ship.",
-    "highlights": [
-     {"title": "A theme system on Tailwind, written by hand", "body": "Our own theme built directly on Tailwind, with no third-party kit. Together with Vite and Webpack build tuning, it cut bundle sizes by up to 90%."},
-     {"title": "Every frontend pipeline", "body": "Moved us from Bitbucket to GitLab with one centralised, variable-driven pipeline that standardises deployments for every squad. Gitflow, Bun for faster cycles, and on-demand production deploys in 4 minutes on AWS S3."},
-     {"title": "Architecture", "body": "A single Storybook library and a Chat-Core that centralises logic across the three platforms, cutting technical debt by 30%."},
-     {"title": "Full-stack solutions", "body": "When a problem doesn't stop at the browser, I follow it into the backend and solve it end to end."},
-     {"title": "AI in the team", "body": "I lead the AI Adoption Committee: Claude and Gemini inside our pipelines to write changelogs and interpret test results. I also coordinate Frontend and QA on Playwright and Cypress E2E testing."}
-    ],
-    "stack": ["React", "TypeScript", "Tailwind CSS", "Vite", "Vitest", "Storybook", "GitLab CI", "Bun", "AWS S3", "Playwright", "Ruby on Rails"]
+   "work": {
+    "title": "Work",
+    "jobs": [
+     {"years": "2022 – now", "company": "ifeel", "role": "Frontend lead", "body": [
+      "I wrote the product's theme system by hand, on top of Tailwind. I also built the Storybook component library and the Chat-Core shared by our three platforms.",
+      "I run every frontend pipeline. We moved from Bitbucket to GitLab with a single pipeline for every team, and a production deploy now takes about four minutes.",
+      "When the problem isn't in the browser, I go down to the backend and fix it there. I'm also on the committee that decides how the team uses AI."
+     ], "stack": "React, TypeScript, Tailwind, Vite, Vitest, Storybook, GitLab CI, Bun, AWS S3 and Playwright."},
+     {"years": "2022", "company": "Freepik", "role": "Frontend Developer", "body": []},
+     {"years": "2017 – 2022", "company": "PcComponentes", "role": "Senior Frontend Developer", "body": [
+      "I joined as the first frontend developer and ended up leading a team of seven. We moved the shop from Symfony and jQuery to React and TypeScript, got the site ready so Black Friday wouldn't take it down, and set up the first Storybook and the first internal package registry."
+     ], "stack": ""},
+     {"years": "2017", "company": "Koalum and freelance work", "role": "Full Stack Developer · Torre del Mar and Edinburgh", "body": [
+      "Bespoke applications in PHP, JavaScript and Angular 2."
+     ], "stack": ""},
+     {"years": "2016", "company": "Golden Race", "role": "Front End Developer", "body": [
+      "Virtual sports betting broadcast by satellite to parts of Africa with very little bandwidth. That's where I learned to count kilobytes."
+     ], "stack": ""},
+     {"years": "2015 – 2016", "company": "Grupo Vid", "role": "Web Developer", "body": [
+      "A multiplayer bingo game for Facebook, with chat and payments, and hybrid apps with PhoneGap."
+     ], "stack": ""},
+     {"years": "2015", "company": "Glanzkinder", "role": "Front-End Developer · Cologne", "body": [
+      "Internal tools for Deutsche Bahn, with AngularJS."
+     ], "stack": ""}
+    ]
    },
    "case": {
-    "label": "Case study",
-    "title": "Nadia Fitness Dance Studio",
-    "meta": "Website for a dance and fitness studio in Torrox Costa · 2026",
-    "body": "From the first proposal to its own domain. A small site, built with the same care as a big product.",
-    "points": [
-     "Custom static generator: copy, classes and timetable live in one JSON file and a Python script builds every page.",
-     "Accessibility checked with axe: 0 violations on mobile and desktop, in light and dark mode.",
-     "Works without JavaScript and never overflows, even at 320 px wide.",
-     "Local SEO: structured data, sitemap and its own domain over HTTPS.",
-     "Hero video with a pause button; visitors who ask for reduced motion only see the still image."
+    "title": "A recent commission",
+    "name": "Nadia Fitness Dance Studio",
+    "years": "2026",
+    "body": [
+     "The website for a dance and fitness studio in Torrox Costa. It's small, but I built it the way I build big ones. The copy and timetable live in one JSON file and a script generates the pages. axe finds no accessibility errors, the site works without JavaScript, and the hero video can be paused.",
+     "It's live at [nadiafitnessdance.es](https://nadiafitnessdance.es/)."
     ],
-    "url": "https://nadiafitnessdance.es/",
-    "urlLabel": "nadiafitnessdance.es",
-    "shotAlt": "Home page of the Nadia Fitness Dance Studio website in dark mode"
+    "img": "nadia.webp", "w": 1200, "h": 750,
+    "alt": "Home page of the Nadia Fitness Dance Studio website"
    },
-   "career": {
-    "label": "Career",
-    "title": "Ten years of frontend",
-    "jobs": [
-     {"company": "ifeel", "role": "Frontend Lead (Frontend Platform)", "dates": "Oct 2022 – now", "place": "Madrid", "body": ""},
-     {"company": "Freepik Company", "role": "Frontend Developer", "dates": "Mar 2022 – Oct 2022", "place": "Málaga", "body": ""},
-     {"company": "PcComponentes", "role": "Senior Frontend Developer", "dates": "Jun 2017 – Mar 2022", "body": "First frontend hire; grew to lead a team of 7 and act as technical Product Owner. Migrated Symfony and jQuery to React, TypeScript and Styled Components. Black Friday infrastructure with zero downtime, the company's first Storybook and internal package registry, and a Dockerised frontend environment."},
-     {"company": "Freelance", "role": "Full Stack Developer", "dates": "Mar 2017 – May 2017", "place": "Edinburgh", "body": "Angular 2, PHP and LESS."},
-     {"company": "Koalum", "role": "Front-End Developer", "dates": "Jan 2017 – Apr 2017", "place": "Torre del Mar", "body": "Bespoke web apps and management tools in PHP and JavaScript, built to slot into external teams."},
-     {"company": "Golden Race", "role": "Front End Developer", "dates": "Jul 2016 – Dec 2016", "place": "Málaga", "body": "Frontend for satellite-broadcast virtual sports betting in low-bandwidth regions of Africa, where every kilobyte of bundle and messaging cost money."},
-     {"company": "Grupo Vid", "role": "Web Developer", "dates": "Oct 2015 – Jul 2016", "place": "Andalusia Technology Park", "body": "A real-time multiplayer Bingo game for Facebook with chat and payments, and hybrid apps with PhoneGap. Projects: Meeting Bingo, Play And Progress and Play And Gaming."},
-     {"company": "Glanzkinder GmbH", "role": "Front-End Developer", "dates": "Mar 2015 – Jun 2015", "place": "Cologne", "body": "Internal tools for Deutsche Bahn: ticketing and real-time train tracking, with AngularJS and REST APIs."}
-    ]
-   },
-   "projects": {
-    "label": "Projects",
-    "title": "On my own",
+   "play": {
+    "title": "Outside work",
+    "intro": "At home I make games and other experiments. Here are a few:",
     "items": [
-     {"name": "DyslexicFontReplacer", "body": "A browser extension that swaps every font on a page for a typeface designed for people with dyslexia.", "tags": ["JavaScript", "Accessibility"], "repo": "https://github.com/negimaru/DyslexicFontReplacer"},
-     {"name": "mako_framework", "body": "The original Final Fantasy VII menus, rebuilt in HTML.", "tags": ["JavaScript", "CSS"], "repo": "https://github.com/negimaru/mako_framework"},
-     {"name": "fTime", "body": "A plugin to follow Formula 1 races live. 2018.", "tags": ["JavaScript"], "repo": ""}
+     {"name": "MOONVERSE", "meta": "Three.js and Tone.js", "body": "A turn-based guitar-solo duel between masked figures, presented like a VHS tape someone found. Everything you play is recorded, and at the end you keep the song as a .wav and the fight as a video.", "img": "moonverse.webp", "alt": "A masked figure plays guitar under a full moon, standing on a circle of symbols"},
+     {"name": "A Cannon Fodder tribute", "meta": "TypeScript and Canvas", "body": "A tribute to the 1993 Cannon Fodder, written from scratch with no engine. Terrain, sprites and sound are all generated in code.", "img": "cannon.webp", "alt": "Top-down jungle map with the squad and a minimap"},
+     {"name": "Kerbal Lite", "meta": "Three.js", "body": "A rocket lifting off a planet with Newtonian physics. The challenge is reaching orbit.", "img": "kerbal.webp", "alt": "A rocket lifts off a green planet, with telemetry on screen"},
+     {"name": "Japanese Temple", "meta": "GZDoom WAD", "body": "Two maps for Doom, a temple and a castle. The tatami, shoji, wood and roof-tile textures come out of Python scripts.", "img": "doom.webp", "alt": "Eight pixel textures: tatami, gravel, shoji, stone, grey and red roof tiles and two woods"},
+     {"name": "Pognanza", "meta": "Lua and LÖVE, with Daniel", "body": "A turn-based strategy roguelike where you build your pog piece by piece. Two of us are making it, and this is my version.", "img": "pognanza.webp", "alt": "Difficulty screen with three options: Novice, Normal and Challenge"}
+    ],
+    "alsoTitle": "And on GitHub",
+    "also": [
+     "[DyslexicFontReplacer](https://github.com/negimaru/DyslexicFontReplacer): a browser extension that swaps the fonts on any site for a typeface designed for dyslexia.",
+     "[mako_framework](https://github.com/negimaru/mako_framework): classic RPG menus built with nothing but HTML and CSS."
     ]
    },
-   "education": [
-    {"title": "Postgraduate in Digital Forensics & Cybersecurity", "school": "University of Málaga", "dates": "2016 – 2017"},
-    {"title": "Higher VET Diploma, Multi-platform Application Development", "school": "IES Portada Alta", "dates": "2015 – 2016"},
-    {"title": "Higher VET Diploma, Web Application Development", "school": "IES Campanillas", "dates": "2012 – 2015"},
-    {"title": "VET Diploma, Computer Systems and Networks", "school": "IES Jorge Guillén", "dates": "2009 – 2011"}
-   ],
-   "languageList": [
-    {"name": "Spanish", "level": "Native"},
-    {"name": "English", "level": "C1 · Cambridge"},
-    {"name": "German", "level": "A2 · learned working in Germany"}
-   ],
-   "contact": {
-    "label": "Contact",
-    "title": "Let's talk",
-    "body": "If you have a frontend to scale, a pipeline to tidy up or a website to get right, get in touch."
+   "education": {
+    "title": "Education",
+    "items": [
+     {"years": "2016 – 2017", "text": "Postgraduate in Digital Forensics and Cybersecurity, University of Málaga"},
+     {"years": "2015 – 2016", "text": "Higher VET Diploma in Multi-platform Application Development, IES Portada Alta"},
+     {"years": "2012 – 2015", "text": "Higher VET Diploma in Web Application Development, IES Campanillas"},
+     {"years": "2009 – 2011", "text": "VET Diploma in Computer Systems and Networks, IES Jorge Guillén"}
+    ]
    },
-   "footer": "Handmade: HTML and CSS generated from one JSON file. No frameworks, no trackers."
+   "languages": {
+    "title": "Languages",
+    "text": "Spanish (native), English C1 (Cambridge) and German A2, picked up while working in Cologne."
+   },
+   "footer": "A Python script builds this page from one JSON file. The [code is on GitHub](repo)."
   }
  }
 }
