@@ -11,7 +11,7 @@ from html import escape as e
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = json.load(open(os.path.join(ROOT, "data/site.json"), encoding="utf-8"))
 SITE = S["siteUrl"]
-V = {"css": 10, "js": 6}
+V = {"css": 11, "js": 7}
 LANGS = S["langs"]
 ICONS = json.load(open(os.path.join(ROOT, "data/tech-icons.json"), encoding="utf-8"))  # Simple Icons, CC0
 
@@ -84,6 +84,14 @@ def tools_row(L, key, other_href):
             f'<a class="lang" href="{other_href}" hreflang="{other}" lang="{other}">{e(ui["otherLang"])}</a></div>')
 
 
+def avatar(ui, pre):
+    ph = S.get("photo")
+    if not ph:
+        return ""
+    src = pre + "assets/img/" + ph["file"]
+    return f'<img class="avatar" src="{src}" width="{ph["w"]}" height="{ph["h"]}" alt="{e(ui["photoAlt"])}">'
+
+
 def side(L, key, other_href, home="./"):
     """Left column: who I am, where I am on the page, how to reach me. Sticky on wide screens."""
     ui, it = L["ui"], L["intro"]
@@ -92,6 +100,7 @@ def side(L, key, other_href, home="./"):
                                     f'<span class="sr-only"> {e(ui["newTab"])}</span></a>')
     return f"""<header class="side">
 {tools_row(L, key, other_href)}
+{avatar(ui, '/' if home == '/' else ('' if key == 'es' else '../'))}
 <h1 id="t-intro"><a href="{home}">{e(it['greeting'])}</a></h1>
 <p class="hud" aria-hidden="true">{e(ui['hud'])}</p>
 <p class="lead">{e(it['lead'])}</p>
@@ -173,7 +182,6 @@ def page(key):
 <main id="main">
 <section id="{ids[0]}" class="sec" aria-labelledby="t-about">
 <h2 id="t-about">{e(L['about']['title'])}</h2>
-{photo}
 <div class="story">{intro}</div>
 <h3 class="sub">{e(L['tech']['title'])}</h3>
 <p>{P(L['tech']['body'])}</p>

@@ -52,7 +52,7 @@
   function restore(img) { if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; } }
   function images8() {
     var on = root.dataset.theme === '8bit';
-    document.querySelectorAll('main img').forEach(on ? pixelate : restore);
+    document.querySelectorAll('main img, .avatar').forEach(on ? pixelate : restore);
   }
   function blip() {
     try {
