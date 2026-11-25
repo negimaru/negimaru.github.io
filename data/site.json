@@ -34,7 +34,7 @@
      "Auto"
     ],
     "workNow": "Ahora",
-    "photoAlt": "Victor Martin",
+    "photoAlt": "Victor Martin sonriendo al atardecer",
     "play8": "Modo 8 bits",
     "konami": "Pista: ↑ ↑ ↓ ↓ ← → ← → B A",
     "hud": "LV 10 · CLASE: FRONTEND"
@@ -254,7 +254,7 @@
      "Auto"
     ],
     "workNow": "Now",
-    "photoAlt": "Victor Martin",
+    "photoAlt": "Victor Martin smiling at sunset",
     "play8": "8-bit mode",
     "konami": "Hint: ↑ ↑ ↓ ↓ ← → ← → B A",
     "hud": "LV 10 · CLASS: FRONTEND"
@@ -448,5 +448,9 @@
    }
   }
  },
- "photo": null
+ "photo": {
+  "file": "me.webp",
+  "w": 320,
+  "h": 320
+ }
 }
