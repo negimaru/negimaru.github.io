@@ -16,12 +16,23 @@
    "ui": {
     "skip": "Saltar al contenido",
     "otherLang": "English",
-    "toDark": "Modo oscuro",
-    "toLight": "Modo claro",
     "newTab": "(se abre en otra pestaña)",
     "notFoundTitle": "Esta página no existe",
     "notFoundBody": "Puede que el enlace sea antiguo.",
-    "notFoundBack": "Volver al inicio"
+    "notFoundBack": "Volver al inicio",
+    "nav": [
+     "Trabajo",
+     "Proyectos",
+     "Formación"
+    ],
+    "navLabel": "Secciones",
+    "theme": "Tema",
+    "themes": [
+     "Claro",
+     "Oscuro",
+     "Auto"
+    ],
+    "workNow": "Ahora"
    },
    "intro": {
     "role": "Desarrollador frontend en Torrox, Málaga",
@@ -204,12 +215,23 @@
    "ui": {
     "skip": "Skip to content",
     "otherLang": "Español",
-    "toDark": "Dark mode",
-    "toLight": "Light mode",
     "newTab": "(opens in a new tab)",
     "notFoundTitle": "This page doesn't exist",
     "notFoundBody": "The link may be out of date.",
-    "notFoundBack": "Back to the home page"
+    "notFoundBack": "Back to the home page",
+    "nav": [
+     "Work",
+     "Projects",
+     "Education"
+    ],
+    "navLabel": "Sections",
+    "theme": "Theme",
+    "themes": [
+     "Light",
+     "Dark",
+     "Auto"
+    ],
+    "workNow": "Now"
    },
    "intro": {
     "role": "Frontend developer in Torrox, Málaga, Spain",
