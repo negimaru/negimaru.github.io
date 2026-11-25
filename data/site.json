@@ -44,7 +44,8 @@
     "lead": "Desarrollador frontend en Torrox. Diez años haciendo interfaces, sistemas de diseño y los pipelines que los llevan a producción.",
     "paras": [
      "Desde 2022 llevo el **frontend de ifeel**. Antes pasé cinco años en **PcComponentes**: entré como primera persona de frontend, **empecé la migración a React**, **me encargué de los Black Friday** y acabé **liderando un equipo de siete**. Por el camino también pasé por **Freepik** y **Golden Race**, e hice proyectos para **motor.es** y **Deutsche Bahn**.",
-     "De lo que más orgulloso estoy es del **sistema de temas de ifeel, escrito a mano sobre Tailwind**. Y fuera del trabajo hago **juegos**: en Three.js, en Canvas o mapas para Doom."
+     "De lo que más orgulloso estoy es del **sistema de temas de ifeel, escrito a mano sobre Tailwind**. Y fuera del trabajo hago **juegos**: en Three.js, en Canvas o mapas para Doom.",
+     "Casi todo lo que ves aquí lo hice **antes de la IA**: a mano, tomando decisiones y asumiendo riesgos."
     ]
    },
    "work": {
@@ -57,6 +58,7 @@
       "body": [
        "**El sistema de temas**, escrito a mano sobre Tailwind. También monté la librería de componentes en Storybook y el Chat-Core que comparten nuestras tres plataformas.",
        "**Todos los pipelines de frontend.** Pasamos de Bitbucket a GitLab con un único pipeline para todos los equipos, y ahora desplegar a producción lleva unos cuatro minutos.",
+       "**Implanté el testing.** Montamos los tests E2E con Playwright y Cypress junto a un equipo de QA junior que no venía del testing.",
        "**Soluciones fullstack** cuando el problema no se queda en el frontend. También formo parte del comité de adopción de IA del equipo."
       ],
       "stack": ""
@@ -260,7 +262,8 @@
     "lead": "Frontend developer in Torrox, Spain. Ten years of interfaces, design systems and the pipelines that ship them to production.",
     "paras": [
      "Since 2022 I've led **frontend at ifeel**. Before that I spent five years at **PcComponentes**: I joined as the first frontend hire, **started the move to React**, **owned Black Friday** and ended up **leading a team of seven**. Along the way I also worked at **Freepik** and **Golden Race**, and built projects for **motor.es** and **Deutsche Bahn**.",
-     "What I'm proudest of is **ifeel's theme system, written by hand on top of Tailwind**. And outside work I make **games**: in Three.js, in Canvas, or maps for Doom."
+     "What I'm proudest of is **ifeel's theme system, written by hand on top of Tailwind**. And outside work I make **games**: in Three.js, in Canvas, or maps for Doom.",
+     "Almost everything you see here I built **before AI**: by hand, making the calls and taking the risks."
     ]
    },
    "work": {
@@ -273,6 +276,7 @@
       "body": [
        "**The theme system**, written by hand on top of Tailwind. I also built the Storybook component library and the Chat-Core shared by our three platforms.",
        "**Every frontend pipeline.** We moved from Bitbucket to GitLab with a single pipeline for every team, and a production deploy now takes about four minutes.",
+       "**I brought in testing.** We built the E2E suites with Playwright and Cypress alongside a junior QA team with no testing background.",
        "**Full-stack solutions** when the problem doesn't stay in the frontend. I'm also on the team's AI adoption committee."
       ],
       "stack": ""
