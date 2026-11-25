@@ -11,7 +11,7 @@ from html import escape as e
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = json.load(open(os.path.join(ROOT, "data/site.json"), encoding="utf-8"))
 SITE = S["siteUrl"]
-V = {"css": 6, "js": 3}
+V = {"css": 7, "js": 4}
 LANGS = S["langs"]
 ICONS = json.load(open(os.path.join(ROOT, "data/tech-icons.json"), encoding="utf-8"))  # Simple Icons, CC0
 
@@ -71,30 +71,37 @@ def head(L, title, desc, canonical, alternates, pre, noindex=False):
 </head>"""
 
 
-IDS = {"es": ["trabajo", "proyectos", "formacion"], "en": ["work", "projects", "education"]}
+IDS = {"es": ["sobre-mi", "experiencia", "proyectos", "formacion"], "en": ["about", "experience", "projects", "education"]}
 
 
-def masthead(L, key, home, other_href):
+def tools_row(L, key, other_href):
     ui = L["ui"]
     other = "en" if key == "es" else "es"
-    nav = "".join(f'<li><a href="{home}#{i}">{e(n)}</a></li>' for i, n in zip(IDS[key], ui["nav"]))
     seg = "".join(f'<button type="button" data-theme-set="{v}" aria-pressed="false">{e(t)}</button>'
                   for v, t in zip(["light", "dark", "auto"], ui["themes"]))
-    return f"""<a class="skip" href="#main">{e(ui['skip'])}</a>
-<header class="bar"><div class="wrap bar-in">
-<a class="me" href="{home}">Victor Martin<span class="surname"> Rodriguez</span></a>
-<nav aria-label="{e(ui['navLabel'])}"><ul class="nav">{nav}</ul></nav>
-<div class="bar-tools">
-<div class="seg" role="group" aria-label="{e(ui['theme'])}" hidden>{seg}</div>
-<a class="lang" href="{other_href}" hreflang="{other}" lang="{other}">{e(ui['otherLang'])}</a>
-</div>
-</div></header>"""
+    return (f'<div class="tools"><div class="seg" role="group" aria-label="{e(ui["theme"])}" hidden>{seg}</div>'
+            f'<a class="lang" href="{other_href}" hreflang="{other}" lang="{other}">{e(ui["otherLang"])}</a></div>')
+
+
+def side(L, key, other_href, home="./"):
+    """Left column: who I am, where I am on the page, how to reach me. Sticky on wide screens."""
+    ui, it = L["ui"], L["intro"]
+    nav = "".join(f'<li><a href="{home}#{i}">{e(n)}</a></li>' for i, n in zip(IDS[key], ui["nav"]))
+    ext = lambda href, icon, label: (f'<a class="btn" href="{href}" target="_blank" rel="noopener">{icon}{label}'
+                                    f'<span class="sr-only"> {e(ui["newTab"])}</span></a>')
+    return f"""<header class="side">
+{tools_row(L, key, other_href)}
+<h1 id="t-intro"><a href="{home}">{e(it['greeting'])}</a></h1>
+<p class="lead">{e(it['lead'])}</p>
+<nav aria-label="{e(ui['navLabel'])}"><ul class="toc">{nav}</ul></nav>
+<p class="social">{ext(S['links']['linkedin'], I_IN, 'LinkedIn')}{ext(S['links']['github'], I_GH, 'GitHub')}</p>
+</header>"""
 
 
 def footer(L):
-    return f"""<footer class="foot"><div class="wrap">
+    return f"""<footer class="foot">
 <p>{links(L['footer'], L['ui'])}</p>
-</div></footer>
+</footer>
 </body>
 </html>
 """
@@ -121,11 +128,14 @@ def page(key):
 
     case_body = "".join(f"<p>{P(t)}</p>" for t in c["body"])
 
+    def proj_row(img, w_, h_, alt, name, meta, body):
+        return (f'<li class="proj"><figure class="screen"><img src="{pre}assets/img/{img}" width="{w_}" height="{h_}" '
+                f'alt="{e(alt)}" loading="lazy" decoding="async"></figure>'
+                f'<div><h3>{e(name)}</h3><p class="role">{e(meta)}</p>{body}</div></li>')
+
     plays = []
     for p in pl["items"]:
-        plays.append(f'<li class="play"><figure class="screen"><img src="{pre}assets/img/{p["img"]}" width="1200" height="675" '
-                     f'alt="{e(p["alt"])}" loading="lazy" decoding="async"></figure>'
-                     f'<h3>{e(p["name"])}</h3><p class="role">{e(p["meta"])}</p><p>{P(p["body"])}</p></li>')
+        plays.append(proj_row(p["img"], 1200, 675, p["alt"], p["name"], p["meta"], f'<p>{P(p["body"])}</p>'))
     also = "".join(f"<li>{P(t)}</li>" for t in pl["also"])
 
     edu = "".join(f'<li class="row"><p class="when">{e(x["years"])}</p><p class="what">{e(x["text"])}</p></li>'
@@ -154,56 +164,41 @@ def page(key):
              f'alt="{e(ui["photoAlt"])}" fetchpriority="high"></figure>') if ph else ""
     html = head(L, L["title"], L["description"], canonical, alternates, pre) + f"""
 <body>
-{masthead(L, key, "./", other_href)}
+<a class="skip" href="#main">{e(ui['skip'])}</a>
+<div class="layout">
+{side(L, key, other_href)}
 <main id="main">
-<section class="wrap hero{' has-photo' if S.get('photo') else ''}" aria-labelledby="t-intro">
-<div class="hero-main">
-<h1 id="t-intro">{e(it['greeting'])}</h1>
-<p class="lead">{e(it['lead'])}</p>
-<div class="hero-text">{intro}</div>
-<p class="social"><a class="btn" href="{S['links']['linkedin']}" target="_blank" rel="noopener">{I_IN}LinkedIn<span class="sr-only"> {e(ui['newTab'])}</span></a><a class="btn" href="{S['links']['github']}" target="_blank" rel="noopener">{I_GH}GitHub<span class="sr-only"> {e(ui['newTab'])}</span></a></p>
-</div>
+<section id="{ids[0]}" class="sec" aria-labelledby="t-about">
+<h2 id="t-about">{e(L['about']['title'])}</h2>
 {photo}
-</section>
-
-<section class="wrap sec" aria-labelledby="t-tech">
-<h2 id="t-tech">{e(L['tech']['title'])}</h2>
-<p class="sec-intro">{P(L['tech']['body'])}</p>
+<div class="story">{intro}</div>
+<h3 class="sub">{e(L['tech']['title'])}</h3>
+<p>{P(L['tech']['body'])}</p>
 <ul class="techs">{tech_tiles()}</ul>
 </section>
 
-<section id="{ids[0]}" class="wrap sec" aria-labelledby="t-work">
+<section id="{ids[1]}" class="sec" aria-labelledby="t-work">
 <h2 id="t-work">{e(w['title'])}</h2>
 <ol class="rows">{''.join(jobs)}</ol>
 </section>
 
-<section class="wrap sec case" aria-labelledby="t-case">
-<div class="case-text">
-<h2 id="t-case">{e(c['title'])}</h2>
-<h3>{e(c['name'])}</h3>
-<p class="role">{e(c['years'])}</p>
-{case_body}
-</div>
-<figure class="screen"><img src="{pre}assets/img/{c['img']}" width="{c['w']}" height="{c['h']}" alt="{e(c['alt'])}" loading="lazy" decoding="async"></figure>
-</section>
-
-<section id="{ids[1]}" class="tint" aria-labelledby="t-play"><div class="wrap sec">
-<h2 id="t-play">{e(pl['title'])}</h2>
-<p class="lede">{e(pl['intro'])}</p>
-<ul class="plays">{''.join(plays)}</ul>
-<h3 class="also-t">{e(pl['alsoTitle'])}</h3>
+<section id="{ids[2]}" class="sec" aria-labelledby="t-proj">
+<h2 id="t-proj">{e(L['projects']['title'])}</h2>
+<ul class="projs">{proj_row(c['img'], c['w'], c['h'], c['alt'], c['name'], L['projects']['caseMeta'], case_body)}</ul>
+<h3 class="sub">{e(pl['title'])}</h3>
+<p>{e(pl['intro'])}</p>
+<ul class="projs">{''.join(plays)}</ul>
+<h3 class="sub">{e(pl['alsoTitle'])}</h3>
 <ul class="also">{also}</ul>
-</div></section>
-
-<section id="{ids[2]}" class="wrap sec duo" aria-labelledby="t-edu">
-<div><h2 id="t-edu">{e(ed['title'])}</h2>
-<ol class="rows rows-tight">{edu}</ol></div>
-<div><h2 id="t-lang">{e(lg['title'])}</h2>
-<p>{e(lg['text'])}</p></div>
 </section>
-</main>
-<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
-""" + footer(L)
+
+<section id="{ids[3]}" class="sec" aria-labelledby="t-edu">
+<h2 id="t-edu">{e(ed['title'])}</h2>
+<ol class="rows rows-tight">{edu}</ol>
+<h3 class="sub">{e(lg['title'])}</h3>
+<p>{e(lg['text'])}</p>
+</section>
+""" + footer(L).replace("</body>", "</main>\n</div>\n<script type=\"application/ld+json\">" + json.dumps(ld, ensure_ascii=False) + "</script>\n</body>", 1)
     out = os.path.join(ROOT, L["path"], "index.html")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     open(out, "w", encoding="utf-8").write(html)
@@ -213,12 +208,14 @@ def not_found():
     L = LANGS["es"]; ui = L["ui"]
     html = head(L, ui["notFoundTitle"], L["description"], SITE + "404.html", [], "/", noindex=True) + f"""
 <body>
-{masthead(L, 'es', '/', '/en/')}
-<main id="main"><section class="wrap hero">
-<h1>{e(ui['notFoundTitle'])}</h1>
+<a class="skip" href="#main">{e(ui['skip'])}</a>
+<div class="layout">
+{side(L, 'es', '/en/', home='/')}
+<main id="main"><section class="sec">
+<h2>{e(ui['notFoundTitle'])}</h2>
 <p>{e(ui['notFoundBody'])} <a href="/">{e(ui['notFoundBack'])}</a>.</p>
-</section></main>
-""" + footer(L)
+</section>
+""" + footer(L).replace("</body>", "</main>\n</div>\n</body>", 1)
     open(os.path.join(ROOT, "404.html"), "w", encoding="utf-8").write(html)
 
 

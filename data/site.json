@@ -21,6 +21,7 @@
     "notFoundBody": "Puede que el enlace sea antiguo.",
     "notFoundBack": "Volver al inicio",
     "nav": [
+     "Sobre mí",
      "Experiencia",
      "Proyectos",
      "Formación"
@@ -211,6 +212,13 @@
    "tech": {
     "title": "Tecnologías",
     "body": "Mi día a día es **React, TypeScript y Tailwind**, con **Vite y Vitest**. Los pipelines van en **GitLab** y despliegan en **AWS S3**. El resto viene de trabajos anteriores y de lo que hago en casa."
+   },
+   "about": {
+    "title": "Sobre mí"
+   },
+   "projects": {
+    "title": "Proyectos",
+    "caseMeta": "Encargo · 2026"
    }
   },
   "en": {
@@ -227,6 +235,7 @@
     "notFoundBody": "The link may be out of date.",
     "notFoundBack": "Back to the home page",
     "nav": [
+     "About",
      "Experience",
      "Projects",
      "Education"
@@ -417,6 +426,13 @@
    "tech": {
     "title": "Technologies",
     "body": "Day to day it's **React, TypeScript and Tailwind**, with **Vite and Vitest**. Pipelines run on **GitLab** and deploy to **AWS S3**. The rest comes from earlier jobs and what I build at home."
+   },
+   "about": {
+    "title": "About"
+   },
+   "projects": {
+    "title": "Projects",
+    "caseMeta": "Commission · 2026"
    }
   }
  },
