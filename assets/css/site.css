@@ -115,3 +115,20 @@ h2 { font-size: clamp(1.5rem, 3vw, 1.85rem); font-weight: 700; letter-spacing: -
   .layout { display: block; }
   :root, :root:not([data-theme="light"]), :root[data-theme="dark"] { --bg: #fff; --ink: #000; --muted: #444; --line: #bbb; --accent: #000; }
 }
+
+/* Easter egg: "8-bit mode", a hidden fourth theme (button in Outside work, or the Konami code).
+   Amber CRT palette, monospaced type, square corners, pixelated images. No glow or scanlines (rule 1). */
+:root[data-theme="8bit"] {
+  --bg: #120D06; --surface: #1C140A; --ink: #FFC266; --muted: #D9954A; --line: #4A3317; --accent: #FF7A4D; --bezel: #000;
+  --font: var(--mono);
+  color-scheme: dark;
+}
+:root[data-theme="8bit"] *, :root[data-theme="8bit"] *::before { border-radius: 0 !important; }
+:root[data-theme="8bit"] img { image-rendering: pixelated; }
+:root[data-theme="8bit"] h1, :root[data-theme="8bit"] h2, :root[data-theme="8bit"] h3 { letter-spacing: 0; }
+:root[data-theme="8bit"] .tech svg path { fill: currentColor; }
+.play8 { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1rem; min-height: 2.75rem; padding: .5rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); font: 600 .95rem/1 var(--font); cursor: pointer; }
+.play8:hover { border-color: var(--ink); }
+.play8[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.pad { width: 1.9rem; height: auto; }
+.konami { margin-top: .4rem; font-family: var(--mono); font-size: .8rem; }
