@@ -34,7 +34,9 @@
      "Auto"
     ],
     "workNow": "Ahora",
-    "photoAlt": "Victor Martin"
+    "photoAlt": "Victor Martin",
+    "play8": "Modo 8 bits",
+    "konami": "Pista: ↑ ↑ ↓ ↓ ← → ← → B A"
    },
    "intro": {
     "greeting": "Victor Martin",
@@ -248,7 +250,9 @@
      "Auto"
     ],
     "workNow": "Now",
-    "photoAlt": "Victor Martin"
+    "photoAlt": "Victor Martin",
+    "play8": "8-bit mode",
+    "konami": "Hint: ↑ ↑ ↓ ↓ ← → ← → B A"
    },
    "intro": {
     "greeting": "Victor Martin",
