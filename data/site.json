@@ -1,0 +1,215 @@
+{
+ "siteUrl": "https://negimaru.github.io/",
+ "name": "Victor Martin",
+ "fullName": "Victor Martin Rodriguez",
+ "links": {
+  "linkedin": "https://www.linkedin.com/in/victor-martin-rodriguez/",
+  "github": "https://github.com/negimaru"
+ },
+ "langs": {
+  "es": {
+   "path": "",
+   "htmlLang": "es",
+   "locale": "es_ES",
+   "title": "Victor Martin · Senior Frontend Developer y arquitecto de software",
+   "description": "Diez años construyendo y escalando frontends, de la arquitectura en blanco a producción con mucho tráfico. Hoy, responsable de frontend en ifeel. Desde Torrox, Málaga.",
+   "ui": {
+    "skip": "Saltar al contenido",
+    "nav": ["Ahora", "Caso", "Trayectoria", "Proyectos", "Contacto"],
+    "navLabel": "Secciones",
+    "otherLang": "English",
+    "otherLangShort": "EN",
+    "themeToDark": "Cambiar a modo oscuro",
+    "themeToLight": "Cambiar a modo claro",
+    "stack": "Stack",
+    "visit": "Ver la web",
+    "code": "Ver código en GitHub",
+    "newTab": "(se abre en otra pestaña)",
+    "education": "Formación",
+    "languages": "Idiomas",
+    "notFoundTitle": "Esta página no existe",
+    "notFoundBody": "Puede que el enlace sea antiguo.",
+    "notFoundBack": "Volver al inicio"
+   },
+   "hero": {
+    "kicker": "Senior Frontend Developer · Arquitectura de software",
+    "where": "Torrox, Málaga",
+    "lead": "Diez años construyendo y escalando frontends: de la arquitectura en blanco a producción con mucho tráfico.",
+    "body": "Combino el código del día a día con el liderazgo técnico: pipelines de CI/CD, migraciones de código heredado, equipos multidisciplinares y decisiones de arquitectura que duran más que el sprint. Trabajo sobre todo con React, TypeScript, Vite y Vitest, y me importan el rendimiento, los tests y la experiencia de quien desarrolla.",
+    "cta": "Ver mi trabajo"
+   },
+   "now": {
+    "label": "Ahora",
+    "title": "Responsable de frontend en ifeel",
+    "meta": "Desde octubre de 2022",
+    "product": "ifeel es una plataforma de bienestar emocional para empresas. Llevo su frontend: tres plataformas que comparten lógica, componentes y forma de desplegarse.",
+    "highlights": [
+     {"title": "Sistema de temas sobre Tailwind, escrito a mano", "body": "Un tema propio construido directamente sobre Tailwind, sin depender de un kit de terceros. Junto con la optimización de los builds en Vite y Webpack, los bundles bajaron hasta un 90 %."},
+     {"title": "Todos los pipelines de frontend", "body": "Migración de Bitbucket a GitLab con un pipeline centralizado y guiado por variables que unifica los despliegues de todos los squads. Gitflow, Bun para acelerar el ciclo y despliegues a producción bajo demanda en 4 minutos sobre AWS S3."},
+     {"title": "Arquitectura", "body": "Una librería única en Storybook y un Chat-Core que centraliza la lógica de las tres plataformas. Resultado: un 30 % menos de deuda técnica."},
+     {"title": "Soluciones fullstack", "body": "Cuando el problema no se acaba en el navegador, lo sigo hasta el backend y lo resuelvo de punta a punta."},
+     {"title": "IA en el equipo", "body": "Dirijo el comité de adopción de IA: Claude y Gemini dentro de los pipelines para generar changelogs e interpretar los tests. También coordino a Frontend y QA en los tests E2E con Playwright y Cypress."}
+    ],
+    "stack": ["React", "TypeScript", "Tailwind CSS", "Vite", "Vitest", "Storybook", "GitLab CI", "Bun", "AWS S3", "Playwright", "Ruby on Rails"]
+   },
+   "case": {
+    "label": "Caso real",
+    "title": "Nadia Fitness Dance Studio",
+    "meta": "Web para un estudio de baile y fitness en Torrox Costa · 2026",
+    "body": "De la primera propuesta al dominio propio. Una web pequeña, pero hecha con el mismo cuidado que un producto grande.",
+    "points": [
+     "Generador estático propio: textos, clases y horario viven en un JSON y un script en Python construye cada página.",
+     "Accesibilidad comprobada con axe: 0 errores en móvil y escritorio, en modo claro y oscuro.",
+     "Funciona sin JavaScript y no se desborda ni a 320 px de ancho.",
+     "SEO local: datos estructurados, sitemap y dominio propio con HTTPS.",
+     "Vídeo de portada con botón de pausa; quien pide menos movimiento solo ve la imagen."
+    ],
+    "url": "https://nadiafitnessdance.es/",
+    "urlLabel": "nadiafitnessdance.es",
+    "shotAlt": "Portada de la web de Nadia Fitness Dance Studio en modo oscuro"
+   },
+   "career": {
+    "label": "Trayectoria",
+    "title": "Diez años de frontend",
+    "jobs": [
+     {"company": "ifeel", "role": "Responsable de frontend (Frontend Platform)", "dates": "oct. 2022 – hoy", "place": "Madrid", "body": ""},
+     {"company": "Freepik Company", "role": "Frontend Developer", "dates": "mar. 2022 – oct. 2022", "place": "Málaga", "body": ""},
+     {"company": "PcComponentes", "role": "Senior Frontend Developer", "dates": "jun. 2017 – mar. 2022", "body": "Primera persona contratada en frontend; llegué a liderar un equipo de 7 y a hacer de Product Owner técnico. Migración de Symfony y jQuery a React, TypeScript y Styled Components. Infraestructura de Black Friday sin caídas, el primer Storybook y el primer repositorio interno de paquetes de la empresa, y un entorno de frontend en Docker."},
+     {"company": "Freelance", "role": "Full Stack Developer", "dates": "mar. 2017 – may. 2017", "place": "Edimburgo", "body": "Angular 2, PHP y LESS."},
+     {"company": "Koalum", "role": "Front-End Developer", "dates": "ene. 2017 – abr. 2017", "place": "Torre del Mar", "body": "Aplicaciones web y herramientas de gestión a medida en PHP y JavaScript, pensadas para integrarse en equipos externos."},
+     {"company": "Golden Race", "role": "Front End Developer", "dates": "jul. 2016 – dic. 2016", "place": "Málaga", "body": "Frontend de apuestas deportivas virtuales emitidas por satélite en zonas de África con poco ancho de banda: cada kilobyte del bundle y de los mensajes costaba dinero."},
+     {"company": "Grupo Vid", "role": "Web Developer", "dates": "oct. 2015 – jul. 2016", "place": "Parque Tecnológico de Andalucía", "body": "Bingo multijugador en tiempo real para Facebook, con chat y pasarela de pago, y apps híbridas con PhoneGap. Proyectos: Meeting Bingo, Play And Progress y Play And Gaming."},
+     {"company": "Glanzkinder GmbH", "role": "Front-End Developer", "dates": "mar. 2015 – jun. 2015", "place": "Colonia", "body": "Herramientas internas para Deutsche Bahn: venta de billetes y seguimiento de trenes en tiempo real, con AngularJS y APIs REST."}
+    ]
+   },
+   "projects": {
+    "label": "Proyectos",
+    "title": "Por mi cuenta",
+    "items": [
+     {"name": "DyslexicFontReplacer", "body": "Extensión que cambia todas las fuentes de una web por una tipografía pensada para personas con dislexia.", "tags": ["JavaScript", "Accesibilidad"], "repo": "https://github.com/negimaru/DyslexicFontReplacer"},
+     {"name": "mako_framework", "body": "Los menús originales de Final Fantasy VII recreados en HTML.", "tags": ["JavaScript", "CSS"], "repo": "https://github.com/negimaru/mako_framework"},
+     {"name": "fTime", "body": "Plugin para seguir las carreras de Fórmula 1 en directo. 2018.", "tags": ["JavaScript"], "repo": ""}
+    ]
+   },
+   "education": [
+    {"title": "Posgrado en Informática Forense y Ciberseguridad", "school": "Universidad de Málaga", "dates": "2016 – 2017"},
+    {"title": "CFGS Desarrollo de Aplicaciones Multiplataforma", "school": "IES Portada Alta", "dates": "2015 – 2016"},
+    {"title": "CFGS Desarrollo de Aplicaciones Web", "school": "IES Campanillas", "dates": "2012 – 2015"},
+    {"title": "CFGM Sistemas Microinformáticos y Redes", "school": "IES Jorge Guillén", "dates": "2009 – 2011"}
+   ],
+   "languageList": [
+    {"name": "Español", "level": "Nativo"},
+    {"name": "Inglés", "level": "C1 · Cambridge"},
+    {"name": "Alemán", "level": "A2 · aprendido trabajando en Alemania"}
+   ],
+   "contact": {
+    "label": "Contacto",
+    "title": "¿Hablamos?",
+    "body": "Si tienes un frontend que escalar, un pipeline que ordenar o una web que hacer bien, escríbeme."
+   },
+   "footer": "Hecho a mano: HTML y CSS generados desde un JSON, sin frameworks ni rastreadores."
+  },
+  "en": {
+   "path": "en/",
+   "htmlLang": "en",
+   "locale": "en_GB",
+   "title": "Victor Martin · Senior Frontend Developer & Software Architect",
+   "description": "A decade building and scaling frontends, from greenfield architecture to high-traffic production. Currently leading frontend at ifeel. Based in Torrox, Málaga, Spain.",
+   "ui": {
+    "skip": "Skip to content",
+    "nav": ["Now", "Case", "Career", "Projects", "Contact"],
+    "navLabel": "Sections",
+    "otherLang": "Español",
+    "otherLangShort": "ES",
+    "themeToDark": "Switch to dark mode",
+    "themeToLight": "Switch to light mode",
+    "stack": "Stack",
+    "visit": "Visit the site",
+    "code": "View code on GitHub",
+    "newTab": "(opens in a new tab)",
+    "education": "Education",
+    "languages": "Languages",
+    "notFoundTitle": "This page doesn't exist",
+    "notFoundBody": "The link may be out of date.",
+    "notFoundBack": "Back to the home page"
+   },
+   "hero": {
+    "kicker": "Senior Frontend Developer · Software Architecture",
+    "where": "Torrox, Málaga, Spain",
+    "lead": "A decade building and scaling frontends, from greenfield architecture to high-traffic production.",
+    "body": "I combine hands-on engineering with technical leadership: CI/CD pipelines, legacy migrations, cross-functional teams and architectural decisions that outlast the sprint. My stack centres on React, TypeScript, Vite and Vitest, with a strong focus on performance, testability and developer experience.",
+    "cta": "See my work"
+   },
+   "now": {
+    "label": "Now",
+    "title": "Leading frontend at ifeel",
+    "meta": "Since October 2022",
+    "product": "ifeel is an emotional well-being platform for companies. I lead its frontend: three platforms that share logic, components and the way they ship.",
+    "highlights": [
+     {"title": "A theme system on Tailwind, written by hand", "body": "Our own theme built directly on Tailwind, with no third-party kit. Together with Vite and Webpack build tuning, it cut bundle sizes by up to 90%."},
+     {"title": "Every frontend pipeline", "body": "Moved us from Bitbucket to GitLab with one centralised, variable-driven pipeline that standardises deployments for every squad. Gitflow, Bun for faster cycles, and on-demand production deploys in 4 minutes on AWS S3."},
+     {"title": "Architecture", "body": "A single Storybook library and a Chat-Core that centralises logic across the three platforms, cutting technical debt by 30%."},
+     {"title": "Full-stack solutions", "body": "When a problem doesn't stop at the browser, I follow it into the backend and solve it end to end."},
+     {"title": "AI in the team", "body": "I lead the AI Adoption Committee: Claude and Gemini inside our pipelines to write changelogs and interpret test results. I also coordinate Frontend and QA on Playwright and Cypress E2E testing."}
+    ],
+    "stack": ["React", "TypeScript", "Tailwind CSS", "Vite", "Vitest", "Storybook", "GitLab CI", "Bun", "AWS S3", "Playwright", "Ruby on Rails"]
+   },
+   "case": {
+    "label": "Case study",
+    "title": "Nadia Fitness Dance Studio",
+    "meta": "Website for a dance and fitness studio in Torrox Costa · 2026",
+    "body": "From the first proposal to its own domain. A small site, built with the same care as a big product.",
+    "points": [
+     "Custom static generator: copy, classes and timetable live in one JSON file and a Python script builds every page.",
+     "Accessibility checked with axe: 0 violations on mobile and desktop, in light and dark mode.",
+     "Works without JavaScript and never overflows, even at 320 px wide.",
+     "Local SEO: structured data, sitemap and its own domain over HTTPS.",
+     "Hero video with a pause button; visitors who ask for reduced motion only see the still image."
+    ],
+    "url": "https://nadiafitnessdance.es/",
+    "urlLabel": "nadiafitnessdance.es",
+    "shotAlt": "Home page of the Nadia Fitness Dance Studio website in dark mode"
+   },
+   "career": {
+    "label": "Career",
+    "title": "Ten years of frontend",
+    "jobs": [
+     {"company": "ifeel", "role": "Frontend Lead (Frontend Platform)", "dates": "Oct 2022 – now", "place": "Madrid", "body": ""},
+     {"company": "Freepik Company", "role": "Frontend Developer", "dates": "Mar 2022 – Oct 2022", "place": "Málaga", "body": ""},
+     {"company": "PcComponentes", "role": "Senior Frontend Developer", "dates": "Jun 2017 – Mar 2022", "body": "First frontend hire; grew to lead a team of 7 and act as technical Product Owner. Migrated Symfony and jQuery to React, TypeScript and Styled Components. Black Friday infrastructure with zero downtime, the company's first Storybook and internal package registry, and a Dockerised frontend environment."},
+     {"company": "Freelance", "role": "Full Stack Developer", "dates": "Mar 2017 – May 2017", "place": "Edinburgh", "body": "Angular 2, PHP and LESS."},
+     {"company": "Koalum", "role": "Front-End Developer", "dates": "Jan 2017 – Apr 2017", "place": "Torre del Mar", "body": "Bespoke web apps and management tools in PHP and JavaScript, built to slot into external teams."},
+     {"company": "Golden Race", "role": "Front End Developer", "dates": "Jul 2016 – Dec 2016", "place": "Málaga", "body": "Frontend for satellite-broadcast virtual sports betting in low-bandwidth regions of Africa, where every kilobyte of bundle and messaging cost money."},
+     {"company": "Grupo Vid", "role": "Web Developer", "dates": "Oct 2015 – Jul 2016", "place": "Andalusia Technology Park", "body": "A real-time multiplayer Bingo game for Facebook with chat and payments, and hybrid apps with PhoneGap. Projects: Meeting Bingo, Play And Progress and Play And Gaming."},
+     {"company": "Glanzkinder GmbH", "role": "Front-End Developer", "dates": "Mar 2015 – Jun 2015", "place": "Cologne", "body": "Internal tools for Deutsche Bahn: ticketing and real-time train tracking, with AngularJS and REST APIs."}
+    ]
+   },
+   "projects": {
+    "label": "Projects",
+    "title": "On my own",
+    "items": [
+     {"name": "DyslexicFontReplacer", "body": "A browser extension that swaps every font on a page for a typeface designed for people with dyslexia.", "tags": ["JavaScript", "Accessibility"], "repo": "https://github.com/negimaru/DyslexicFontReplacer"},
+     {"name": "mako_framework", "body": "The original Final Fantasy VII menus, rebuilt in HTML.", "tags": ["JavaScript", "CSS"], "repo": "https://github.com/negimaru/mako_framework"},
+     {"name": "fTime", "body": "A plugin to follow Formula 1 races live. 2018.", "tags": ["JavaScript"], "repo": ""}
+    ]
+   },
+   "education": [
+    {"title": "Postgraduate in Digital Forensics & Cybersecurity", "school": "University of Málaga", "dates": "2016 – 2017"},
+    {"title": "Higher VET Diploma, Multi-platform Application Development", "school": "IES Portada Alta", "dates": "2015 – 2016"},
+    {"title": "Higher VET Diploma, Web Application Development", "school": "IES Campanillas", "dates": "2012 – 2015"},
+    {"title": "VET Diploma, Computer Systems and Networks", "school": "IES Jorge Guillén", "dates": "2009 – 2011"}
+   ],
+   "languageList": [
+    {"name": "Spanish", "level": "Native"},
+    {"name": "English", "level": "C1 · Cambridge"},
+    {"name": "German", "level": "A2 · learned working in Germany"}
+   ],
+   "contact": {
+    "label": "Contact",
+    "title": "Let's talk",
+    "body": "If you have a frontend to scale, a pipeline to tidy up or a website to get right, get in touch."
+   },
+   "footer": "Handmade: HTML and CSS generated from one JSON file. No frameworks, no trackers."
+  }
+ }
+}

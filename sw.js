@@ -1,23 +1,8 @@
-var cacheName = 'pese y los componente';
-var filesToCache = [
-  '/css/style.css',
-];
-
-/* Start the service worker and cache all of the app's content */
-self.addEventListener('install', function(e) {
-  e.waitUntil(
-    caches.open(cacheName).then(function(cache) {
-      return cache.addAll(filesToCache);
-    })
-  );
+// Retired: the old site's service worker. This version clears its cache and unregisters itself.
+self.addEventListener('install', function () { self.skipWaiting(); });
+self.addEventListener('activate', function (e) {
+  e.waitUntil(caches.keys().then(function (ks) { return Promise.all(ks.map(function (k) { return caches.delete(k); })); })
+    .then(function () { return self.registration.unregister(); })
+    .then(function () { return self.clients.matchAll(); })
+    .then(function (cs) { cs.forEach(function (c) { c.navigate(c.url); }); }));
 });
-
-/* Serve cached content when offline */
-self.addEventListener('fetch', function(e) {
-  e.respondWith(
-    caches.match(e.request).then(function(response) {
-      return response || fetch(e.request);
-    })
-  );
-});
-
