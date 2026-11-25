@@ -36,7 +36,8 @@
     "workNow": "Ahora",
     "photoAlt": "Victor Martin",
     "play8": "Modo 8 bits",
-    "konami": "Pista: ↑ ↑ ↓ ↓ ← → ← → B A"
+    "konami": "Pista: ↑ ↑ ↓ ↓ ← → ← → B A",
+    "hud": "LV 10 · CLASE: FRONTEND"
    },
    "intro": {
     "greeting": "Victor Martin",
@@ -254,7 +255,8 @@
     "workNow": "Now",
     "photoAlt": "Victor Martin",
     "play8": "8-bit mode",
-    "konami": "Hint: ↑ ↑ ↓ ↓ ← → ← → B A"
+    "konami": "Hint: ↑ ↑ ↓ ↓ ← → ← → B A",
+    "hud": "LV 10 · CLASS: FRONTEND"
    },
    "intro": {
     "greeting": "Victor Martin",
