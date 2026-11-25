@@ -11,8 +11,27 @@ from html import escape as e
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = json.load(open(os.path.join(ROOT, "data/site.json"), encoding="utf-8"))
 SITE = S["siteUrl"]
-V = {"css": 5, "js": 3}
+V = {"css": 6, "js": 3}
 LANGS = S["langs"]
+ICONS = json.load(open(os.path.join(ROOT, "data/tech-icons.json"), encoding="utf-8"))  # Simple Icons, CC0
+
+
+def svg(paths):
+    return (f'<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
+            f'stroke-linejoin="round" aria-hidden="true" focusable="false">{paths}</svg>')
+
+
+I_IN = svg('<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>')
+I_GH = svg('<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.1-1.3-.3-2.5-1-3.5.3-1.2.3-2.4 0-3.5 0 0-1 0-3 1.5a10.4 10.4 0 0 0-5.5 0C6.5 2 5.5 2 5.5 2c-.3 1.1-.3 2.3 0 3.5A5.4 5.4 0 0 0 4.5 9c0 3.5 3 5.5 6 5.5-.4.5-.8 1-1 1.6-.2.6-.3 1.2-.2 1.9v4"/><path d="M9 18c-4.5 2-5-2-7-2"/>')
+
+
+def tech_tiles():
+    out = []
+    for t in ICONS:
+        fill = "currentColor" if t["hex"] in ("#000000", "#FFFFFF") else t["hex"]
+        out.append(f'<li class="tech"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="{fill}" d="{t["path"]}"/></svg>'
+                   f'<span>{e(t["label"])}</span></li>')
+    return "".join(out)
 
 
 def links(text, ui):
@@ -130,14 +149,27 @@ def page(key):
     }
 
     ids = IDS[key]
+    ph = S.get("photo")
+    photo = (f'<figure class="me-photo"><img src="{pre}assets/img/{ph["file"]}" width="{ph["w"]}" height="{ph["h"]}" '
+             f'alt="{e(ui["photoAlt"])}" fetchpriority="high"></figure>') if ph else ""
     html = head(L, L["title"], L["description"], canonical, alternates, pre) + f"""
 <body>
 {masthead(L, key, "./", other_href)}
 <main id="main">
-<section class="wrap hero" aria-labelledby="t-intro">
-<h1 id="t-intro">{e(S['fullName'])}</h1>
-<p class="tagline">{e(it['role'])}</p>
+<section class="wrap hero{' has-photo' if S.get('photo') else ''}" aria-labelledby="t-intro">
+<div class="hero-main">
+<h1 id="t-intro">{e(it['greeting'])}</h1>
+<p class="lead">{e(it['lead'])}</p>
 <div class="hero-text">{intro}</div>
+<p class="social"><a class="btn" href="{S['links']['linkedin']}" target="_blank" rel="noopener">{I_IN}LinkedIn<span class="sr-only"> {e(ui['newTab'])}</span></a><a class="btn" href="{S['links']['github']}" target="_blank" rel="noopener">{I_GH}GitHub<span class="sr-only"> {e(ui['newTab'])}</span></a></p>
+</div>
+{photo}
+</section>
+
+<section class="wrap sec" aria-labelledby="t-tech">
+<h2 id="t-tech">{e(L['tech']['title'])}</h2>
+<p class="sec-intro">{P(L['tech']['body'])}</p>
+<ul class="techs">{tech_tiles()}</ul>
 </section>
 
 <section id="{ids[0]}" class="wrap sec" aria-labelledby="t-work">

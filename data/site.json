@@ -21,7 +21,7 @@
     "notFoundBody": "Puede que el enlace sea antiguo.",
     "notFoundBack": "Volver al inicio",
     "nav": [
-     "Trabajo",
+     "Experiencia",
      "Proyectos",
      "Formación"
     ],
@@ -32,17 +32,20 @@
      "Oscuro",
      "Auto"
     ],
-    "workNow": "Ahora"
+    "workNow": "Ahora",
+    "photoAlt": "Victor Martin"
    },
    "intro": {
+    "greeting": "¡Hola! Soy Victor Martin",
     "role": "Desarrollador frontend en Torrox, Málaga",
+    "lead": "Hago frontend desde hace diez años: interfaces, sistemas de diseño y los pipelines que los llevan a producción.",
     "paras": [
-     "Llevo diez años haciendo frontend. Desde 2022 soy el responsable de frontend en ifeel, una plataforma de bienestar emocional para empresas. Antes pasé cinco años en PcComponentes, donde fui la primera persona de frontend y acabé llevando un equipo de siete.",
-     "Me encuentras en [LinkedIn](linkedin) y en [GitHub](github)."
+     "Desde 2022 llevo el **frontend de ifeel**. Antes pasé cinco años en **PcComponentes**, donde fui la primera persona de frontend, **empecé la migración a React** y acabé **liderando un equipo de siete**. También he trabajado en **Freepik** y **Golden Race**, y para clientes como **motor.es** o **Deutsche Bahn**.",
+     "De lo que más orgulloso estoy es del **sistema de temas de ifeel, escrito a mano sobre Tailwind**. Y fuera del trabajo hago **juegos**: en Three.js, en Canvas o mapas para Doom."
     ]
    },
    "work": {
-    "title": "Trabajo",
+    "title": "Experiencia",
     "jobs": [
      {
       "years": "2022 – hoy",
@@ -53,13 +56,14 @@
        "**Todos los pipelines de frontend.** Pasamos de Bitbucket a GitLab con un único pipeline para todos los equipos, y ahora desplegar a producción lleva unos cuatro minutos.",
        "**Soluciones fullstack** cuando el problema no se queda en el frontend. También formo parte del comité de adopción de IA del equipo."
       ],
-      "stack": "React, TypeScript, Tailwind, Vite, Vitest, Storybook, GitLab CI, Bun, AWS S3 y Playwright."
+      "stack": ""
      },
      {
       "years": "2022",
       "company": "Freepik",
       "role": "Frontend Developer",
-      "body": []
+      "body": [],
+      "stack": ""
      },
      {
       "years": "2017 – 2022",
@@ -203,7 +207,11 @@
     "title": "Idiomas",
     "text": "Español nativo, inglés C1 (Cambridge) y alemán A2, que aprendí trabajando en Colonia."
    },
-   "footer": "Esta página la genera un script de Python a partir de un JSON. El [código está en GitHub](repo)."
+   "footer": "Esta página la genera un script de Python a partir de un JSON. El [código está en GitHub](repo).",
+   "tech": {
+    "title": "Tecnologías",
+    "body": "Mi día a día es **React, TypeScript y Tailwind**, con **Vite y Vitest**. Los pipelines van en **GitLab** y despliegan en **AWS S3**. El resto viene de trabajos anteriores y de lo que hago en casa."
+   }
   },
   "en": {
    "path": "en/",
@@ -219,7 +227,7 @@
     "notFoundBody": "The link may be out of date.",
     "notFoundBack": "Back to the home page",
     "nav": [
-     "Work",
+     "Experience",
      "Projects",
      "Education"
     ],
@@ -230,17 +238,20 @@
      "Dark",
      "Auto"
     ],
-    "workNow": "Now"
+    "workNow": "Now",
+    "photoAlt": "Victor Martin"
    },
    "intro": {
+    "greeting": "Hi! I'm Victor Martin",
     "role": "Frontend developer in Torrox, Málaga, Spain",
+    "lead": "I've been doing frontend for ten years: interfaces, design systems and the pipelines that ship them to production.",
     "paras": [
-     "I've been doing frontend for ten years. Since 2022 I've led frontend at ifeel, an emotional well-being platform for companies. Before that I spent five years at PcComponentes, where I was the first frontend hire and ended up leading a team of seven.",
-     "You can find me on [LinkedIn](linkedin) and [GitHub](github)."
+     "Since 2022 I've led **frontend at ifeel**. Before that I spent five years at **PcComponentes**, where I was the first frontend hire, **started the move to React** and ended up **leading a team of seven**. I've also worked at **Freepik** and **Golden Race**, and for clients such as **motor.es** and **Deutsche Bahn**.",
+     "What I'm proudest of is **ifeel's theme system, written by hand on top of Tailwind**. And outside work I make **games**: in Three.js, in Canvas, or maps for Doom."
     ]
    },
    "work": {
-    "title": "Work",
+    "title": "Experience",
     "jobs": [
      {
       "years": "2022 – now",
@@ -251,13 +262,14 @@
        "**Every frontend pipeline.** We moved from Bitbucket to GitLab with a single pipeline for every team, and a production deploy now takes about four minutes.",
        "**Full-stack solutions** when the problem doesn't stay in the frontend. I'm also on the team's AI adoption committee."
       ],
-      "stack": "React, TypeScript, Tailwind, Vite, Vitest, Storybook, GitLab CI, Bun, AWS S3 and Playwright."
+      "stack": ""
      },
      {
       "years": "2022",
       "company": "Freepik",
       "role": "Frontend Developer",
-      "body": []
+      "body": [],
+      "stack": ""
      },
      {
       "years": "2017 – 2022",
@@ -401,7 +413,12 @@
     "title": "Languages",
     "text": "Spanish (native), English C1 (Cambridge) and German A2, picked up while working in Cologne."
    },
-   "footer": "A Python script builds this page from one JSON file. The [code is on GitHub](repo)."
+   "footer": "A Python script builds this page from one JSON file. The [code is on GitHub](repo).",
+   "tech": {
+    "title": "Technologies",
+    "body": "Day to day it's **React, TypeScript and Tailwind**, with **Vite and Vitest**. Pipelines run on **GitLab** and deploy to **AWS S3**. The rest comes from earlier jobs and what I build at home."
+   }
   }
- }
+ },
+ "photo": null
 }

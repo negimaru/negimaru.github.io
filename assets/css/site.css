@@ -59,13 +59,26 @@ strong { font-weight: 650; color: var(--ink); }
 @media (max-width: 50rem) { .bar nav { display: none; } }
 @media (max-width: 26rem) { .me { font-size: .95rem; } .seg button { padding: .5rem .45rem; } .lang { padding: .45rem .3rem; } .bar-in { gap: .5rem; } }
 
-/* Hero */
-.hero { padding-top: clamp(3.5rem, 10vw, 7rem); padding-bottom: clamp(2.5rem, 6vw, 4rem); }
-.hero h1 { font-size: clamp(2.4rem, 6.5vw, 4.25rem); font-weight: 700; line-height: 1.08; letter-spacing: -.03em; }  /* rule 4 */
-.tagline { font-size: 1.2rem; color: var(--muted); margin-top: .6rem; }
-.hero-text { max-width: 40rem; margin-top: 1.5rem; color: var(--muted); font-size: 1.15rem; }
-.hero-text p + p { margin-top: .9rem; }
-.hero-text p:first-child { color: var(--ink); font-size: 1.25rem; line-height: 1.55; }
+/* Hero: greeting, one-line lead, a short story with the key phrases in bold, then the photo when there is one */
+.hero { padding-top: clamp(3rem, 9vw, 6rem); padding-bottom: clamp(1rem, 3vw, 2rem); display: grid; gap: 2.5rem; align-items: center; }
+@media (min-width: 56rem) { .hero.has-photo { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 4rem; } }
+.hero h1 { font-size: clamp(2.2rem, 5.5vw, 3.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -.025em; }  /* rule 4 */
+.lead { font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.35; color: var(--muted); margin-top: .75rem; max-width: 36rem; letter-spacing: -.01em; }
+.hero-text { max-width: 40rem; margin-top: 1.75rem; }
+.hero-text p + p { margin-top: 1rem; }
+.social { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2rem; }
+.btn { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.75rem; padding: .55rem 1rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); font-weight: 600; font-size: .95rem; text-decoration: none; }
+.btn:hover { border-color: var(--ink); }
+.btn .i { width: 1.1em; height: 1.1em; }
+.me-photo img { border-radius: 16px; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+
+/* Technologies: real logos in their own colours carry the colour of the page */
+.sec-intro { max-width: 44rem; margin-top: -.5rem; }
+.techs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .6rem; margin-top: 2rem; }   /* 16 tiles: 4 or 8 per row, no holes (rule 8) */
+@media (min-width: 52rem) { .techs { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
+.tech { display: flex; flex-direction: column; align-items: center; gap: .55rem; padding: 1rem .25rem .8rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); text-align: center; }
+.tech svg { width: 2rem; height: 2rem; }
+.tech span { font-size: .8rem; color: var(--muted); line-height: 1.2; }
 
 /* Sections */
 .sec { padding-top: clamp(3rem, 7vw, 5rem); padding-bottom: clamp(1rem, 3vw, 2rem); }
