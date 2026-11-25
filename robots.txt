@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://negimaru.github.io/sitemap.xml

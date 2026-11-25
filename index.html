@@ -1,416 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Co-op Deals Explorer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Modern Dark (Slate) with vibrant accents (Cyan, Emerald, Amber) -->
-    <!-- Application Structure Plan: Restructured layout for better flow: Charts first for an overview, then filters directly above the game list for intuitive interaction. Switched to a clean, modern dark theme. -->
-    <!-- Visualization & Content Choices: 
-        - Theme: Replaced NES.css with a custom, modern dark theme using TailwindCSS. Justification: Fulfills user request for a cleaner, but still "videogame themed," aesthetic.
-        - Layout: Changed the genre filter from a scrollable row to a responsive grid (flex-wrap) to improve usability and visibility of all options.
-        - Components: All components (cards, buttons, inputs) have been restyled to be cleaner and more modern.
-        - Data: Curated and significantly expanded the dataset to strictly include games supporting 4 or more players with persistent progression, as requested.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0f172a; /* slate-900 */
-            color: #cbd5e1; /* slate-300 */
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            height: 320px;
-            max-height: 350px;
-        }
-        .game-card {
-            background-color: #1e293b; /* slate-800 */
-            transition: all 0.2s ease-in-out;
-            border: 1px solid #334155; /* slate-700 */
-        }
-        .game-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 0 20px rgba(34, 211, 238, 0.4); /* cyan-400 */
-            border-color: rgba(34, 211, 238, 0.7);
-        }
-        input[type="range"] {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 100%;
-            height: 6px;
-            background: #334155; /* slate-700 */
-            border-radius: 3px;
-            outline: none;
-            opacity: 0.7;
-            transition: opacity .2s;
-        }
-        input[type="range"]:hover {
-            opacity: 1;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            background: #22d3ee; /* cyan-400 */
-            cursor: pointer;
-            border-radius: 50%;
-        }
-        input[type=range]::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            background: #22d3ee; /* cyan-400 */
-            cursor: pointer;
-            border-radius: 50%;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Victor Martin · Senior Frontend Developer y arquitecto de software</title>
+<meta name="description" content="Diez años construyendo y escalando frontends, de la arquitectura en blanco a producción con mucho tráfico. Hoy, responsable de frontend en ifeel. Desde Torrox, Málaga.">
+<link rel="canonical" href="https://negimaru.github.io/"><link rel="alternate" hreflang="es" href="https://negimaru.github.io/"><link rel="alternate" hreflang="en" href="https://negimaru.github.io/en/"><link rel="alternate" hreflang="x-default" href="https://negimaru.github.io/">
+<meta name="theme-color" content="#0E1013">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Victor Martin · Senior Frontend Developer y arquitecto de software">
+<meta property="og:description" content="Diez años construyendo y escalando frontends, de la arquitectura en blanco a producción con mucho tráfico. Hoy, responsable de frontend en ifeel. Desde Torrox, Málaga.">
+<meta property="og:url" content="https://negimaru.github.io/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://negimaru.github.io/assets/img/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.dataset.theme="light"}catch(_){}</script>
+<link rel="stylesheet" href="assets/css/site.css?v=1">
+<script src="assets/js/site.js?v=1" defer></script>
 </head>
 <body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="top"><div class="wrap top-in">
+<a class="brand" href="./">vm<span class="brand-dot">.</span></a>
+<nav aria-label="Secciones"><ul class="nav"><li><a href="./#ahora">Ahora</a></li><li><a href="./#caso">Caso</a></li><li><a href="./#trayectoria">Trayectoria</a></li><li><a href="./#proyectos">Proyectos</a></li><li><a href="./#contacto">Contacto</a></li></ul></nav>
+<div class="tools">
+<a class="tool lang" href="en/" hreflang="en" lang="en"><span aria-hidden="true">EN</span><span class="sr-only">English</span></a>
+<button class="tool theme" type="button" hidden data-to-light="Cambiar a modo claro" data-to-dark="Cambiar a modo oscuro" aria-label="Cambiar a modo claro"><svg class="i i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></button>
+</div></div></header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title"><div class="wrap">
+<p class="kicker">Senior Frontend Developer · Arquitectura de software</p>
+<h1 id="hero-title">Victor Martin</h1>
+<p class="lead">Diez años construyendo y escalando frontends: de la arquitectura en blanco a producción con mucho tráfico.</p>
+<p class="hero-body">Combino el código del día a día con el liderazgo técnico: pipelines de CI/CD, migraciones de código heredado, equipos multidisciplinares y decisiones de arquitectura que duran más que el sprint. Trabajo sobre todo con React, TypeScript, Vite y Vitest, y me importan el rendimiento, los tests y la experiencia de quien desarrolla.</p>
+<div class="hero-row">
+<a class="btn" href="#ahora">Ver mi trabajo<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
+<a class="btn btn-ghost" href="https://www.linkedin.com/in/victor-martin-rodriguez/" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn<span class="sr-only"> (se abre en otra pestaña)</span></a>
+<p class="where"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Torrox, Málaga</p>
+</div>
+</div></section>
 
-    <div class="container mx-auto p-4 md:p-6">
+<section id="ahora" class="sec" aria-labelledby="t-now"><div class="wrap">
+<p class="label"><span>01</span>Ahora</p>
+<h2 id="t-now">Responsable de frontend en ifeel</h2>
+<p class="meta">Desde octubre de 2022</p>
+<p class="intro">ifeel es una plataforma de bienestar emocional para empresas. Llevo su frontend: tres plataformas que comparten lógica, componentes y forma de desplegarse.</p>
+<ul class="hls" role="list"><li class="hl"><h3>Sistema de temas sobre Tailwind, escrito a mano</h3><p>Un tema propio construido directamente sobre Tailwind, sin depender de un kit de terceros. Junto con la optimización de los builds en Vite y Webpack, los bundles bajaron hasta un 90 %.</p></li><li class="hl"><h3>Todos los pipelines de frontend</h3><p>Migración de Bitbucket a GitLab con un pipeline centralizado y guiado por variables que unifica los despliegues de todos los squads. Gitflow, Bun para acelerar el ciclo y despliegues a producción bajo demanda en 4 minutos sobre AWS S3.</p></li><li class="hl"><h3>Arquitectura</h3><p>Una librería única en Storybook y un Chat-Core que centraliza la lógica de las tres plataformas. Resultado: un 30 % menos de deuda técnica.</p></li><li class="hl"><h3>Soluciones fullstack</h3><p>Cuando el problema no se acaba en el navegador, lo sigo hasta el backend y lo resuelvo de punta a punta.</p></li><li class="hl"><h3>IA en el equipo</h3><p>Dirijo el comité de adopción de IA: Claude y Gemini dentro de los pipelines para generar changelogs e interpretar los tests. También coordino a Frontend y QA en los tests E2E con Playwright y Cypress.</p></li></ul>
+<h3 class="sub">Stack</h3>
+<ul class="tags tags-lg" role="list"><li>React</li><li>TypeScript</li><li>Tailwind CSS</li><li>Vite</li><li>Vitest</li><li>Storybook</li><li>GitLab CI</li><li>Bun</li><li>AWS S3</li><li>Playwright</li><li>Ruby on Rails</li></ul>
+</div></section>
 
-        <header class="text-center mb-8">
-             <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Co-op Deals Explorer</h1>
-            <p class="text-slate-400 mt-2">Your interactive guide to 4-player co-op sales</p>
-        </header>
+<section id="caso" class="sec sec-alt" aria-labelledby="t-case"><div class="wrap case">
+<div class="case-text">
+<p class="label"><span>02</span>Caso real</p>
+<h2 id="t-case">Nadia Fitness Dance Studio</h2>
+<p class="meta">Web para un estudio de baile y fitness en Torrox Costa · 2026</p>
+<p class="intro">De la primera propuesta al dominio propio. Una web pequeña, pero hecha con el mismo cuidado que un producto grande.</p>
+<ul class="checks" role="list"><li>Generador estático propio: textos, clases y horario viven en un JSON y un script en Python construye cada página.</li><li>Accesibilidad comprobada con axe: 0 errores en móvil y escritorio, en modo claro y oscuro.</li><li>Funciona sin JavaScript y no se desborda ni a 320 px de ancho.</li><li>SEO local: datos estructurados, sitemap y dominio propio con HTTPS.</li><li>Vídeo de portada con botón de pausa; quien pide menos movimiento solo ve la imagen.</li></ul>
+<p><a class="btn" href="https://nadiafitnessdance.es/" target="_blank" rel="noopener">Ver la web<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><span class="sr-only"> (se abre en otra pestaña)</span></a></p>
+</div>
+<figure class="shot"><img src="assets/img/nadia.webp" width="1200" height="750" alt="Portada de la web de Nadia Fitness Dance Studio en modo oscuro" loading="lazy" decoding="async"><figcaption>nadiafitnessdance.es</figcaption></figure>
+</div></section>
 
-        <main>
-            <section id="visualizations" class="mb-8">
-                 <div class="text-center mb-6">
-                    <h2 class="text-3xl font-bold text-white">Sale Analysis</h2>
-                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 p-6 rounded-2xl">
-                         <h3 class="text-xl font-bold text-white text-center mb-4">Games by Price</h3>
-                        <div class="chart-container">
-                            <canvas id="price-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 p-6 rounded-2xl">
-                        <h3 class="text-xl font-bold text-white text-center mb-4">Genre Distribution</h3>
-                        <div class="chart-container">
-                            <canvas id="genre-chart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="filters" class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 p-6 rounded-2xl mb-8">
-                <div class="flex flex-col gap-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="price-slider" class="block text-sm font-semibold text-slate-300 mb-2">Max Price: <span id="price-value" class="font-bold text-cyan-400">$70</span></label>
-                            <input type="range" id="price-slider" min="0" max="70" value="70" step="1">
-                        </div>
-                        <div>
-                            <label for="sort-by" class="block text-sm font-semibold text-slate-300 mb-2">Sort By</label>
-                            <select id="sort-by" class="w-full bg-slate-700 border border-slate-600 text-white rounded-md p-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
-                                <option value="price_asc">Price: Low to High</option>
-                                <option value="price_desc">Price: High to Low</option>
-                                <option value="four_pack_asc">4-Pack: Low to High</option>
-                                <option value="discount_desc">Discount %</option>
-                                <option value="name_asc">Name: A-Z</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                         <label class="block text-sm font-semibold text-slate-300 mb-2">Filter by Genre</label>
-                        <div id="genre-filters" class="flex flex-wrap gap-2">
-                        </div>
-                    </div>
-                </div>
-            </section>
+<section id="trayectoria" class="sec" aria-labelledby="t-career"><div class="wrap">
+<p class="label"><span>03</span>Trayectoria</p>
+<h2 id="t-career">Diez años de frontend</h2>
+<ol class="jobs" role="list"><li class="job"><p class="job-dates">oct. 2022 – hoy</p><div><h3>ifeel</h3><p class="job-role">Responsable de frontend (Frontend Platform) · Madrid</p></div></li><li class="job"><p class="job-dates">mar. 2022 – oct. 2022</p><div><h3>Freepik Company</h3><p class="job-role">Frontend Developer · Málaga</p></div></li><li class="job"><p class="job-dates">jun. 2017 – mar. 2022</p><div><h3>PcComponentes</h3><p class="job-role">Senior Frontend Developer</p><p class="job-body">Primera persona contratada en frontend; llegué a liderar un equipo de 7 y a hacer de Product Owner técnico. Migración de Symfony y jQuery a React, TypeScript y Styled Components. Infraestructura de Black Friday sin caídas, el primer Storybook y el primer repositorio interno de paquetes de la empresa, y un entorno de frontend en Docker.</p></div></li><li class="job"><p class="job-dates">mar. 2017 – may. 2017</p><div><h3>Freelance</h3><p class="job-role">Full Stack Developer · Edimburgo</p><p class="job-body">Angular 2, PHP y LESS.</p></div></li><li class="job"><p class="job-dates">ene. 2017 – abr. 2017</p><div><h3>Koalum</h3><p class="job-role">Front-End Developer · Torre del Mar</p><p class="job-body">Aplicaciones web y herramientas de gestión a medida en PHP y JavaScript, pensadas para integrarse en equipos externos.</p></div></li><li class="job"><p class="job-dates">jul. 2016 – dic. 2016</p><div><h3>Golden Race</h3><p class="job-role">Front End Developer · Málaga</p><p class="job-body">Frontend de apuestas deportivas virtuales emitidas por satélite en zonas de África con poco ancho de banda: cada kilobyte del bundle y de los mensajes costaba dinero.</p></div></li><li class="job"><p class="job-dates">oct. 2015 – jul. 2016</p><div><h3>Grupo Vid</h3><p class="job-role">Web Developer · Parque Tecnológico de Andalucía</p><p class="job-body">Bingo multijugador en tiempo real para Facebook, con chat y pasarela de pago, y apps híbridas con PhoneGap. Proyectos: Meeting Bingo, Play And Progress y Play And Gaming.</p></div></li><li class="job"><p class="job-dates">mar. 2015 – jun. 2015</p><div><h3>Glanzkinder GmbH</h3><p class="job-role">Front-End Developer · Colonia</p><p class="job-body">Herramientas internas para Deutsche Bahn: venta de billetes y seguimiento de trenes en tiempo real, con AngularJS y APIs REST.</p></div></li></ol>
+<div class="duo">
+<div><h3 class="sub">Formación</h3><ul class="plain" role="list"><li><p class="edu-t">Posgrado en Informática Forense y Ciberseguridad</p><p class="muted">Universidad de Málaga · 2016 – 2017</p></li><li><p class="edu-t">CFGS Desarrollo de Aplicaciones Multiplataforma</p><p class="muted">IES Portada Alta · 2015 – 2016</p></li><li><p class="edu-t">CFGS Desarrollo de Aplicaciones Web</p><p class="muted">IES Campanillas · 2012 – 2015</p></li><li><p class="edu-t">CFGM Sistemas Microinformáticos y Redes</p><p class="muted">IES Jorge Guillén · 2009 – 2011</p></li></ul></div>
+<div><h3 class="sub">Idiomas</h3><ul class="plain" role="list"><li><p class="edu-t">Español</p><p class="muted">Nativo</p></li><li><p class="edu-t">Inglés</p><p class="muted">C1 · Cambridge</p></li><li><p class="edu-t">Alemán</p><p class="muted">A2 · aprendido trabajando en Alemania</p></li></ul></div>
+</div>
+</div></section>
 
-            <section id="results">
-                <div class="mb-4">
-                    <h2 class="text-2xl font-bold text-white">
-                        <span id="game-count">0</span> Games Found
-                    </h2>
-                </div>
-                <div id="game-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                </div>
-                <div id="no-results" class="hidden text-center py-16 bg-slate-800 border border-slate-700 rounded-2xl">
-                    <p class="text-2xl font-bold text-white">No Games Match Your Filters</p>
-                    <p class="text-slate-400 mt-2">Try adjusting your price or genre selections.</p>
-                </div>
-            </section>
+<section id="proyectos" class="sec sec-alt" aria-labelledby="t-proj"><div class="wrap">
+<p class="label"><span>04</span>Proyectos</p>
+<h2 id="t-proj">Por mi cuenta</h2>
+<ul class="projs" role="list"><li class="proj"><h3>DyslexicFontReplacer</h3><p>Extensión que cambia todas las fuentes de una web por una tipografía pensada para personas con dislexia.</p><ul class="tags" role="list"><li>JavaScript</li><li>Accesibilidad</li></ul><p class="proj-link"><a href="https://github.com/negimaru/DyslexicFontReplacer" target="_blank" rel="noopener">Ver código en GitHub<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><span class="sr-only"> (se abre en otra pestaña)</span></a></p></li><li class="proj"><h3>mako_framework</h3><p>Los menús originales de Final Fantasy VII recreados en HTML.</p><ul class="tags" role="list"><li>JavaScript</li><li>CSS</li></ul><p class="proj-link"><a href="https://github.com/negimaru/mako_framework" target="_blank" rel="noopener">Ver código en GitHub<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><span class="sr-only"> (se abre en otra pestaña)</span></a></p></li><li class="proj"><h3>fTime</h3><p>Plugin para seguir las carreras de Fórmula 1 en directo. 2018.</p><ul class="tags" role="list"><li>JavaScript</li></ul></li></ul>
+</div></section>
 
-        </main>
-         <footer class="text-center mt-12">
-            <p class="text-sm text-slate-500">Powered by Chart.js and Tailwind CSS</p>
-        </footer>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const gameData = [
-                { title: "Payday 2", salePrice: 0.99, discount: 90, originalPrice: 9.99, genre: "Heist Shooter", expertTake: "The classic four-player co-op heist game. Deep skill trees and weapon customization for endless replayability.", fourPackDiscount: 0 },
-                { title: "Left 4 Dead 2", salePrice: 1.99, discount: 80, originalPrice: 9.95, genre: "Horde Shooter", expertTake: "Timeless zombie shooter; endlessly replayable with massive community mod support.", fourPackDiscount: 25 },
-                { title: "Shadow Warrior 2", salePrice: 2.99, discount: 90, originalPrice: 29.99, genre: "Looter-Shooter", expertTake: "A fast-paced, gory shooter with procedural maps and a deep loot system. A great cheap thrill.", fourPackDiscount: 0 },
-                { title: "Borderlands 3", salePrice: 2.99, discount: 95, originalPrice: 59.80, genre: "Looter-Shooter", expertTake: "A massive AAA experience; bombastic action, deep skill trees, and billions of guns to loot.", fourPackDiscount: 0 },
-                { title: "Streets of Rogue", salePrice: 3.99, discount: 80, originalPrice: 19.95, genre: "Roguelite", expertTake: "Incredibly deep and chaotic gameplay; unlock new characters, items, and traits permanently.", fourPackDiscount: 10 },
-                { title: "The Forest", salePrice: 4.00, discount: 80, originalPrice: 20.00, genre: "Survival-Craft", expertTake: "Terrifying survival experience; progression through crafting better gear and building a persistent base.", fourPackDiscount: 0 },
-                { title: "Castle Crashers", salePrice: 4.49, discount: 70, originalPrice: 14.97, genre: "Beat 'em Up", expertTake: "The quintessential 2D beat 'em up; features character leveling, stat allocation, and weapon collecting.", fourPackDiscount: 25 },
-                { title: "Terraria", salePrice: 4.99, discount: 50, originalPrice: 9.98, genre: "Survival-Craft", expertTake: "Legendary 2D sandbox with staggering progression; craft better gear to fight tougher bosses.", fourPackDiscount: 10 },
-                { title: "Starbound", salePrice: 4.99, discount: 75, originalPrice: 19.99, genre: "Survival-Craft", expertTake: "A 2D sandbox like Terraria but in space. Explore infinite planets, build colonies, and follow a story.", fourPackDiscount: 0 },
-                { title: "Don't Starve Together", salePrice: 5.09, discount: 66, originalPrice: 14.99, genre: "Survival-Craft", expertTake: "A brutal and stylish survival game with a steep learning curve and deep crafting systems. True teamwork is required.", fourPackDiscount: 0 },
-                { title: "PlateUp!", salePrice: 5.99, discount: 70, originalPrice: 19.97, genre: "Roguelite", expertTake: "Chaotic co-op cooking with deep roguelite progression; permanently unlock new dishes, layouts, and equipment.", fourPackDiscount: 15 },
-                { title: "Human: Fall Flat", salePrice: 5.99, discount: 70, originalPrice: 19.99, genre: "Physics Puzzle", expertTake: "A hilarious physics-based puzzle platformer where controlling your wobbly character is half the fun.", fourPackDiscount: 0 },
-                { title: "Risk of Rain 2", salePrice: 6.24, discount: 75, originalPrice: 24.99, genre: "Roguelike", expertTake: "Masterful 3D roguelike where difficulty scales over time. Progression via unlocking characters and powerful items.", fourPackDiscount: 15 },
-                { title: "Necesse", salePrice: 6.99, discount: 30, originalPrice: 9.99, genre: "Survival-Craft", expertTake: "A top-down sandbox adventure. Build a settlement, explore dungeons, and fight bosses to progress your gear.", fourPackDiscount: 0 },
-                { title: "Generation Zero", salePrice: 7.49, discount: 70, originalPrice: 24.99, genre: "Looter-Shooter", expertTake: "Explore a 1980s Swedish countryside fighting hostile machines. Loot weapons and attachments to survive.", fourPackDiscount: 0 },
-                { title: "State of Decay 2", salePrice: 7.49, discount: 75, originalPrice: 29.99, genre: "Survival-Craft", expertTake: "Build a persistent community, level up survivor skills, and manage a long-term base in a zombie apocalypse.", fourPackDiscount: 0 },
-                { title: "Barony", salePrice: 7.99, discount: 60, originalPrice: 19.99, genre: "Roguelike", expertTake: "A first-person, classic roguelike with deep RPG systems and challenging co-op dungeon crawling.", fourPackDiscount: 0 },
-                { title: "Lethal Company", salePrice: 7.99, discount: 20, originalPrice: 9.99, genre: "Horror", expertTake: "A co-op horror roguelike about scavenging scrap from abandoned moons. High risk, high reward, high chaos.", fourPackDiscount: 0 },
-                { title: "Tinkertown", salePrice: 8.49, discount: 50, originalPrice: 16.99, genre: "Survival-Craft", expertTake: "A charming 2D sandbox multiplayer game with a focus on exploration, combat, and building.", fourPackDiscount: 0 },
-                { title: "Barotrauma", salePrice: 8.74, discount: 75, originalPrice: 34.99, genre: "Survival-Sim", expertTake: "A 2D co-op sub simulator in the oceans of Europa. Manage systems, fight monsters, and try not to drown.", fourPackDiscount: 0 },
-                { title: "Stardew Valley", salePrice: 8.99, discount: 40, originalPrice: 14.99, genre: "Farming Sim", expertTake: "The king of farming sims. Build a farm, explore caves, and become part of a community with up to 3 friends.", fourPackDiscount: 0 },
-                { title: "Hydroneer", salePrice: 8.99, discount: 40, originalPrice: 14.99, genre: "Sandbox", expertTake: "A relaxing mining and base-building sandbox. Dig for gold and use machines to build a massive mining operation.", fourPackDiscount: 0 },
-                { title: "The Division 2", salePrice: 8.99, discount: 70, originalPrice: 29.99, genre: "Looter-Shooter", expertTake: "A detailed open-world tactical looter-shooter set in Washington D.C. with a deep endgame and build variety.", fourPackDiscount: 0 },
-                { title: "Dying Light", salePrice: 9.89, discount: 67, originalPrice: 29.99, genre: "Action RPG", expertTake: "An open-world zombie game with a focus on parkour and melee combat. The full story is co-op.", fourPackDiscount: 0 },
-                { title: "Deep Rock Galactic", salePrice: 9.89, discount: 67, originalPrice: 29.97, genre: "Horde Shooter", expertTake: "The ultimate co-op experience with deep character progression, promotions, and hundreds of weapon overclocks.", fourPackDiscount: 10 },
-                { title: "Monster Hunter: World", salePrice: 9.89, discount: 67, originalPrice: 29.99, genre: "Action RPG", expertTake: "Hunt massive monsters to craft gear from their parts. The core progression loop is legendary and satisfying.", fourPackDiscount: 10 },
-                { title: "Valheim", salePrice: 9.99, discount: 50, originalPrice: 19.98, genre: "Survival-Craft", expertTake: "Viking-themed survival where progression is tied to defeating bosses to unlock new crafting tiers.", fourPackDiscount: 0 },
-                { title: "Halo: MCC", salePrice: 9.99, discount: 75, originalPrice: 39.96, genre: "FPS", expertTake: "Multiple legendary campaigns fully playable in co-op; an incredible amount of content and unlocks.", fourPackDiscount: 0 },
-                { title: "Space Engineers", salePrice: 9.99, discount: 50, originalPrice: 19.99, genre: "Survival-Craft", expertTake: "A sandbox game about engineering, construction, and exploration in space. Build ships and stations.", fourPackDiscount: 0 },
-                { title: "Zombie Army 4: Dead War", salePrice: 9.99, discount: 80, originalPrice: 49.99, genre: "Horde Shooter", expertTake: "A campy, B-movie take on the zombie shooter genre with satisfying slow-mo killcams and upgrades.", fourPackDiscount: 0 },
-                { title: "Tom Clancy's Ghost Recon Wildlands", salePrice: 9.99, discount: 80, originalPrice: 49.99, genre: "Tactical Shooter", expertTake: "A massive open-world military shooter fully playable in 4-player co-op. Tons of missions and content.", fourPackDiscount: 0 },
-                { title: "Conan Exiles", salePrice: 10.00, discount: 60, originalPrice: 25.00, genre: "Survival-Craft", expertTake: "A brutal survival game with leveling, attribute points, and a massive crafting tree to progress through.", fourPackDiscount: 0 },
-                { title: "Fallout 76", salePrice: 10.00, discount: 75, originalPrice: 40.00, genre: "Online RPG", expertTake: "Explore post-apocalyptic West Virginia; features deep character building with S.P.E.C.I.A.L. stats and perk cards.", fourPackDiscount: 0 },
-                { title: "Phasmophobia", salePrice: 11.89, discount: 15, originalPrice: 13.99, genre: "Horror", expertTake: "A 4-player psychological horror game where you hunt ghosts. Use gear to find evidence and survive.", fourPackDiscount: 0 },
-                { title: "Astroneer", salePrice: 11.99, discount: 60, originalPrice: 29.99, genre: "Survival-Craft", expertTake: "Explore and reshape distant worlds. A chill, colorful survival game focused on exploration and base building.", fourPackDiscount: 0 },
-                { title: "Green Hell", salePrice: 12.49, discount: 50, originalPrice: 24.99, genre: "Survival-Craft", expertTake: "A brutally realistic survival sim set in the Amazon rainforest. Manage health, sanity, and the environment.", fourPackDiscount: 0 },
-                { title: "PowerWash Simulator", salePrice: 12.49, discount: 50, originalPrice: 24.98, genre: "Simulation", expertTake: "Relaxing zen co-op. Earn money from jobs to buy better washing equipment.", fourPackDiscount: 0 },
-                { title: "Project Zomboid", salePrice: 13.39, discount: 33, originalPrice: 19.99, genre: "Survival-Craft", expertTake: "The ultimate hardcore zombie survival sim where your character's skills improve with use in a persistent world.", fourPackDiscount: 25 },
-                { title: "Raft", salePrice: 13.39, discount: 33, originalPrice: 19.99, genre: "Survival-Craft", expertTake: "Survive on a floating raft, unlocking new crafting blueprints via research to progress through the story.", fourPackDiscount: 0 },
-                { title: "Core Keeper", salePrice: 13.99, discount: 30, originalPrice: 19.99, genre: "Survival-Craft", expertTake: "Mining sandbox adventure with skill trees, crafting progression, and boss-gated content.", fourPackDiscount: 0 },
-                { title: "Scrap Mechanic", salePrice: 13.99, discount: 30, originalPrice: 19.99, genre: "Survival-Craft", expertTake: "Build incredible machines and vehicles to survive hostile robots in this physics-based sandbox.", fourPackDiscount: 0 },
-                { title: "SCP: 5K", salePrice: 13.99, discount: 30, originalPrice: 19.99, genre: "Tactical Shooter", expertTake: "A co-op tactical horror shooter set in the SCP universe. Intense and story-driven missions.", fourPackDiscount: 0 },
-                { title: "Across the Obelisk", salePrice: 13.99, discount: 30, originalPrice: 19.99, genre: "Deckbuilder RPG", expertTake: "A co-op deckbuilding roguelite RPG. Each player controls a hero and builds their own deck.", fourPackDiscount: 0 },
-                { title: "The Front", salePrice: 14.99, discount: 50, originalPrice: 29.99, genre: "Survival-Craft", expertTake: "An open-world survival crafting shooter with base building and tower defense elements against mutants.", fourPackDiscount: 0 },
-                { title: "Craftopia", salePrice: 14.99, discount: 40, originalPrice: 24.99, genre: "Survival-Craft", expertTake: "A hybrid of everything: survival, farming, automation, monster taming, and dungeon crawling in a massive open world.", fourPackDiscount: 0 },
-                { title: "Vintage Story", salePrice: 14.99, discount: 25, originalPrice: 19.99, genre: "Survival-Craft", expertTake: "A hardcore, detailed survival sandbox focused on realism, geology, and intricate crafting processes.", fourPackDiscount: 0 },
-                { title: "Sunkenland", salePrice: 15.99, discount: 20, originalPrice: 19.99, genre: "Survival-Craft", expertTake: "A 'Waterworld'-style survival game. Explore sunken cities, build a water base, and fight pirates.", fourPackDiscount: 0 },
-                { title: "Warhammer: Darktide", salePrice: 15.99, discount: 60, originalPrice: 39.98, genre: "Horde Shooter", expertTake: "Brutal co-op shooter with deep character classes, skill trees, and a complex loot/crafting system.", fourPackDiscount: 0 },
-                { title: "V Rising", salePrice: 15.99, discount: 20, originalPrice: 19.99, genre: "Survival-Craft", expertTake: "An open-world vampire survival game. Build your castle, hunt for blood, and conquer the world.", fourPackDiscount: 0 },
-                { title: "Smalland: Survive the Wilds", salePrice: 17.49, discount: 30, originalPrice: 24.99, genre: "Survival-Craft", expertTake: "Shrink down and explore a massive world from a tiny perspective. Tame insects and build treetop bases.", fourPackDiscount: 0 },
-                { title: "Voidtrain", salePrice: 17.99, discount: 40, originalPrice: 29.99, genre: "Survival-Craft", expertTake: "Build and upgrade your own train to travel through surreal interdimensional voids. A unique take on the genre.", fourPackDiscount: 0 },
-                { title: "ECO", salePrice: 17.99, discount: 40, originalPrice: 29.99, genre: "Survival-Sim", expertTake: "A collaborative survival game where your group must stop a meteor by advancing technology without destroying the ecosystem.", fourPackDiscount: 0 },
-                { title: "Wildermyth", salePrice: 18.74, discount: 25, originalPrice: 24.99, genre: "Procedural RPG", expertTake: "A unique RPG where you lead a band of heroes through procedurally generated stories. Your characters age and evolve.", fourPackDiscount: 0 },
-                { title: "Medieval Dynasty", salePrice: 18.74, discount: 25, originalPrice: 24.99, genre: "Survival-Sim", expertTake: "A unique blend of survival, building, and life simulation. Build an entire medieval village from scratch.", fourPackDiscount: 0 },
-                { title: "Grounded", salePrice: 19.99, discount: 50, originalPrice: 39.99, genre: "Survival-Craft", expertTake: "Survive the backyard by analyzing materials to unlock crafting recipes and finding Milk Molars for permanent boosts.", fourPackDiscount: 0 },
-                { title: "Abiotic Factor", salePrice: 19.99, discount: 20, originalPrice: 24.99, genre: "Survival-Craft", expertTake: "A 90s sci-fi themed survival game. Craft, explore, and survive in a secret underground research facility.", fourPackDiscount: 0 },
-                { title: "Rust", salePrice: 19.99, discount: 50, originalPrice: 39.99, genre: "Survival-Craft", expertTake: "A hardcore survival game that is primarily PvP, but can be enjoyed on PvE servers with friends.", fourPackDiscount: 0 },
-                { title: "Sea of Thieves", salePrice: 19.99, discount: 50, originalPrice: 39.99, genre: "Adventure", expertTake: "A shared-world adventure game. Sail a pirate ship with your crew, find treasure, and fight krakens.", fourPackDiscount: 0 },
-                { title: "Palworld", salePrice: 22.49, discount: 25, originalPrice: 29.98, genre: "Survival-Craft", expertTake: "'Pokémon with guns' featuring base building, tech tree progression, and leveling up your character and Pals.", fourPackDiscount: 0 },
-                { title: "Icarus", salePrice: 22.74, discount: 35, originalPrice: 34.99, genre: "Survival-Craft", expertTake: "Session-based PvE survival with persistent character talents and an orbital workshop tech tree.", fourPackDiscount: 0 },
-                { title: "Sons Of The Forest", salePrice: 23.99, discount: 20, originalPrice: 29.99, genre: "Survival-Craft", expertTake: "The sequel to The Forest, with an expanded world, smarter AI, and deeper building mechanics. Pure terror.", fourPackDiscount: 0 },
-                { title: "The Lord of the Rings: Return to Moria", salePrice: 23.99, discount: 40, originalPrice: 39.99, genre: "Survival-Craft", expertTake: "Reclaim the lost Dwarven homeland of Moria. Mine, craft, and explore the darkness of Middle-earth.", fourPackDiscount: 0 },
-                { title: "Myth of Empires", salePrice: 23.99, discount: 20, originalPrice: 29.99, genre: "Survival-Craft", expertTake: "A massive multiplayer sandbox set in ancient times. Build empires, recruit NPCs, and lay siege to castles.", fourPackDiscount: 0 },
-                { title: "Enshrouded", salePrice: 24.00, discount: 20, originalPrice: 30.00, genre: "Survival-Craft", expertTake: "A survival action RPG with a vast, flexible skill tree and extensive crafting/building progression.", fourPackDiscount: 0 },
-                { title: "7 Days to Die", salePrice: 26.99, discount: 40, originalPrice: 44.99, genre: "Survival-Craft", expertTake: "A unique mix of FPS and survival with deep skill trees, perks, and a book-based recipe system.", fourPackDiscount: 0 },
-                { title: "Satisfactory", salePrice: 27.99, discount: 30, originalPrice: 39.99, genre: "Automation", expertTake: "A first-person factory builder. Progression is unlocking new tech tiers to build bigger and better automations.", fourPackDiscount: 0 },
-                { title: "Factorio", salePrice: 28.00, discount: 20, originalPrice: 35.00, genre: "Automation", expertTake: "The pinnacle of automation games. Design and build massive, complex factories with friends.", fourPackDiscount: 0 },
-                { title: "No Man's Sky", salePrice: 29.99, discount: 50, originalPrice: 59.99, genre: "Survival-Craft", expertTake: "The ultimate sci-fi exploration game. Explore a near-infinite universe, build bases, and fly with friends.", fourPackDiscount: 0 },
-                { title: "Diablo 4", salePrice: 34.99, discount: 50, originalPrice: 69.99, genre: "Action RPG", expertTake: "The premier AAA action-RPG experience; progression is centered on leveling, skill trees, and endless loot grinding.", fourPackDiscount: 0 }
-            ];
-
-            const priceSlider = document.getElementById('price-slider');
-            const priceValue = document.getElementById('price-value');
-            const sortBy = document.getElementById('sort-by');
-            const genreFiltersContainer = document.getElementById('genre-filters');
-            const gameList = document.getElementById('game-list');
-            const gameCount = document.getElementById('game-count');
-            const noResults = document.getElementById('no-results');
-
-            let selectedGenres = [];
-            let priceChart, genreChart;
-
-            Chart.defaults.font.family = "'Poppins', sans-serif";
-            Chart.defaults.color = '#cbd5e1'; // slate-300
-            Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.1)';
-
-            gameData.forEach(game => {
-                const basePrice = game.salePrice * 4;
-                game.fourPackPrice = game.fourPackDiscount > 0 ? basePrice * (1 - game.fourPackDiscount / 100) : basePrice;
-            });
-
-            const uniqueGenres = [...new Set(gameData.map(game => game.genre))].sort();
-
-            function setupGenreFilters() {
-                uniqueGenres.forEach(genre => {
-                    const button = document.createElement('button');
-                    button.dataset.genre = genre;
-                    button.textContent = genre;
-                    button.className = 'px-4 py-2 border border-slate-600 bg-slate-700/50 text-slate-300 rounded-full text-sm font-medium transition-colors duration-200 hover:bg-slate-600 hover:text-white';
-                    button.addEventListener('click', () => {
-                        button.classList.toggle('bg-cyan-500/20');
-                        button.classList.toggle('border-cyan-500');
-                        button.classList.toggle('text-white');
-                        button.classList.toggle('bg-slate-700/50');
-                        button.classList.toggle('border-slate-600');
-                        button.classList.toggle('text-slate-300');
-
-                        if (selectedGenres.includes(genre)) {
-                            selectedGenres = selectedGenres.filter(g => g !== genre);
-                        } else {
-                            selectedGenres.push(genre);
-                        }
-                        updateDisplay();
-                    });
-                    genreFiltersContainer.appendChild(button);
-                });
-            }
-
-            function renderGames(games) {
-                gameList.innerHTML = '';
-                noResults.classList.toggle('hidden', games.length > 0);
-                gameList.classList.toggle('hidden', games.length === 0);
-
-                games.forEach(game => {
-                    const card = document.createElement('div');
-                    card.className = 'game-card rounded-2xl flex flex-col p-5';
-                    const isFree = game.salePrice === 0;
-
-                    let priceHtml = `
-                        <div class="flex flex-wrap justify-center items-center gap-x-3 gap-y-2">
-                             <span class="text-lg font-bold text-emerald-400">$${game.salePrice.toFixed(2)}</span>
-                             <span class="text-xs font-semibold bg-red-500/20 text-red-400 px-2 py-1 rounded-full">-${game.discount}%</span>
-                             <p class="text-sm text-slate-500 line-through">$${game.originalPrice.toFixed(2)}</p>
-                        </div>`;
-
-                    if (isFree) {
-                         priceHtml = `<div class="flex justify-center"><span class="text-lg font-bold text-emerald-400">FREE TO PLAY</span></div>`;
-                    }
-                    
-                    let fourPackHtml = '';
-                    if (!isFree) {
-                        fourPackHtml = `
-                        <div class="bg-slate-900/50 p-3 mt-4 rounded-lg">
-                             <p class="text-xs text-center text-slate-400 mb-2">4-Pack Deal</p>
-                             <div class="flex justify-between items-center">
-                                <span class="text-xl font-bold text-amber-400">$${game.fourPackPrice.toFixed(2)}</span>
-                                ${game.fourPackDiscount > 0 ? `<span class="text-xs font-semibold bg-amber-500/20 text-amber-400 px-2 py-1 rounded-full">-${game.fourPackDiscount}%</span>` : ''}
-                             </div>
-                        </div>`;
-                    }
-
-
-                    card.innerHTML = `
-                        <div class="game-card-content">
-                            <h3 class="text-xl font-bold text-white mb-2">${game.title}</h3>
-                            <p class="text-sm text-slate-400 mb-4 flex-grow">${game.expertTake}</p>
-                            <p class="text-xs mb-4">Genre: <span class="font-semibold text-cyan-400">${game.genre}</span></p>
-                            <div class="game-card-footer">
-                               ${priceHtml}
-                               ${fourPackHtml}
-                            </div>
-                        </div>
-                    `;
-                    gameList.appendChild(card);
-                });
-            }
-
-            function updateCharts(games) {
-                updatePriceChart(games);
-                updateGenreChart(games);
-            }
-
-            function updatePriceChart(games) {
-                const priceRanges = { '<$5': 0, '$5-$10': 0, '$10-$20': 0, '$20-$40': 0, '$40+': 0 };
-                games.forEach(game => {
-                    if (game.salePrice < 5) priceRanges['<$5']++;
-                    else if (game.salePrice < 10) priceRanges['$5-$10']++;
-                    else if (game.salePrice < 20) priceRanges['$10-$20']++;
-                    else if (game.salePrice < 40) priceRanges['$20-$40']++;
-                    else priceRanges['$40+']++;
-                });
-
-                const ctx = document.getElementById('price-chart').getContext('2d');
-                if (priceChart) priceChart.destroy();
-                priceChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: Object.keys(priceRanges),
-                        datasets: [{
-                            label: 'Games',
-                            data: Object.values(priceRanges),
-                            backgroundColor: ['rgba(56, 189, 248, 0.6)','rgba(16, 185, 129, 0.6)','rgba(251, 191, 36, 0.6)','rgba(249, 115, 22, 0.6)','rgba(239, 68, 68, 0.6)'],
-                            borderColor: ['#38bdf8', '#10b981', '#fbbf24', '#f97316', '#ef4444'],
-                            borderWidth: 1,
-                            borderRadius: 4,
-                        }]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
-                        scales: { 
-                            y: { ticks: { stepSize: 1, color: '#94a3b8' }, grid: { color: 'rgba(255, 255, 255, 0.1)' } },
-                            x: { ticks: { color: '#94a3b8' }, grid: { display: false } }
-                        }
-                    }
-                });
-            }
-
-            function updateGenreChart(games) {
-                const genreCounts = {};
-                games.forEach(game => { genreCounts[game.genre] = (genreCounts[game.genre] || 0) + 1; });
-                const sortedGenres = Object.entries(genreCounts).sort(([,a],[,b]) => b-a);
-                const labels = sortedGenres.map(item => item[0]);
-                const data = sortedGenres.map(item => item[1]);
-                const chartColors = ['#ef4444', '#a855f7', '#3b82f6', '#f59e0b', '#10b981', '#f97316', '#14b8a6', '#64748b', '#0ea5e9', '#ec4899', '#84cc16', '#22d3ee'];
-
-                const ctx = document.getElementById('genre-chart').getContext('2d');
-                if (genreChart) genreChart.destroy();
-                genreChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: labels,
-                        datasets: [{ data: data, backgroundColor: chartColors, borderColor: '#1e293b', borderWidth: 4, hoverOffset: 8 }]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#cbd5e1' } } } }
-                });
-            }
-            
-            function updateDisplay() {
-                let filteredGames = gameData.filter(game => game.salePrice <= parseFloat(priceSlider.value));
-                if (selectedGenres.length > 0) {
-                    filteredGames = filteredGames.filter(game => selectedGenres.includes(game.genre));
-                }
-
-                switch (sortBy.value) {
-                    case 'price_asc': filteredGames.sort((a, b) => a.salePrice - b.salePrice); break;
-                    case 'price_desc': filteredGames.sort((a, b) => b.salePrice - a.salePrice); break;
-                    case 'discount_desc': filteredGames.sort((a, b) => b.discount - a.discount); break;
-                    case 'name_asc': filteredGames.sort((a, b) => a.title.localeCompare(b.title)); break;
-                    case 'four_pack_asc': 
-                        filteredGames.sort((a, b) => {
-                            const priceA = a.isFree ? Infinity : a.fourPackPrice;
-                            const priceB = b.isFree ? Infinity : b.fourPackPrice;
-                            return priceA - priceB;
-                        });
-                        break;
-                }
-
-                gameCount.textContent = filteredGames.length;
-                renderGames(filteredGames);
-                updateCharts(filteredGames);
-            }
-
-            priceSlider.addEventListener('input', () => {
-                priceValue.textContent = `$${priceSlider.value}`;
-                updateDisplay();
-            });
-            sortBy.addEventListener('change', updateDisplay);
-
-            setupGenreFilters();
-            updateDisplay();
-        });
-    </script>
+<section id="contacto" class="sec contact" aria-labelledby="t-contact"><div class="wrap">
+<p class="label"><span>05</span>Contacto</p>
+<h2 id="t-contact">¿Hablamos?</h2>
+<p class="intro">Si tienes un frontend que escalar, un pipeline que ordenar o una web que hacer bien, escríbeme.</p>
+<div class="hero-row">
+<a class="btn" href="https://www.linkedin.com/in/victor-martin-rodriguez/" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn<span class="sr-only"> (se abre en otra pestaña)</span></a>
+<a class="btn btn-ghost" href="https://github.com/negimaru" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.1-1.3-.3-2.5-1-3.5.3-1.2.3-2.4 0-3.5 0 0-1 0-3 1.5a10.4 10.4 0 0 0-5.5 0C6.5 2 5.5 2 5.5 2c-.3 1.1-.3 2.3 0 3.5A5.4 5.4 0 0 0 4.5 9c0 3.5 3 5.5 6 5.5-.4.5-.8 1-1 1.6-.2.6-.3 1.2-.2 1.9v4"/><path d="M9 18c-4.5 2-5-2-7-2"/></svg>GitHub<span class="sr-only"> (se abre en otra pestaña)</span></a>
+</div>
+</div></section>
+</main>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfilePage", "inLanguage": "es", "url": "https://negimaru.github.io/", "mainEntity": {"@type": "Person", "name": "Victor Martin Rodriguez", "alternateName": "Victor Martin", "jobTitle": "Senior Frontend Developer", "worksFor": {"@type": "Organization", "name": "ifeel"}, "address": {"@type": "PostalAddress", "addressLocality": "Torrox", "addressRegion": "Málaga", "addressCountry": "ES"}, "knowsLanguage": ["es", "en", "de"], "knowsAbout": ["React", "TypeScript", "Tailwind CSS", "Vite", "Vitest", "Storybook", "GitLab CI", "Bun", "AWS S3", "Playwright", "Ruby on Rails"], "sameAs": ["https://www.linkedin.com/in/victor-martin-rodriguez/", "https://github.com/negimaru"], "url": "https://negimaru.github.io/"}}</script>
+<footer class="foot"><div class="wrap foot-in">
+<p>© 2026 Victor Martin Rodriguez</p>
+<p>Hecho a mano: HTML y CSS generados desde un JSON, sin frameworks ni rastreadores.</p>
+</div></footer>
 </body>
 </html>
