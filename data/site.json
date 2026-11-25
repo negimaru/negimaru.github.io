@@ -34,27 +34,79 @@
    "work": {
     "title": "Trabajo",
     "jobs": [
-     {"years": "2022 – hoy", "company": "ifeel", "role": "Responsable de frontend", "body": [
-      "Escribí a mano, sobre Tailwind, el sistema de temas del producto. También monté la librería de componentes en Storybook y el Chat-Core que comparten nuestras tres plataformas.",
-      "Llevo todos los pipelines de frontend. Pasamos de Bitbucket a GitLab con un único pipeline para todos los equipos, y ahora desplegar a producción lleva unos cuatro minutos.",
-      "Cuando el problema no está en el navegador, bajo al backend y lo arreglo ahí. Y estoy en el comité que decide cómo usamos la IA en el equipo."
-     ], "stack": "React, TypeScript, Tailwind, Vite, Vitest, Storybook, GitLab CI, Bun, AWS S3 y Playwright."},
-     {"years": "2022", "company": "Freepik", "role": "Frontend Developer", "body": []},
-     {"years": "2017 – 2022", "company": "PcComponentes", "role": "Senior Frontend Developer", "body": [
-      "Entré como primer desarrollador de frontend y terminé llevando un equipo de siete personas. Pasamos la tienda de Symfony y jQuery a React y TypeScript, preparamos la web para que el Black Friday no la tumbara y creamos el primer Storybook y el primer repositorio de paquetes internos."
-     ], "stack": ""},
-     {"years": "2017", "company": "Koalum y trabajo freelance", "role": "Full Stack Developer · Torre del Mar y Edimburgo", "body": [
-      "Aplicaciones a medida en PHP, JavaScript y Angular 2."
-     ], "stack": ""},
-     {"years": "2016", "company": "Golden Race", "role": "Front End Developer", "body": [
-      "Apuestas deportivas virtuales que se emitían por satélite en zonas de África con muy poca conexión. Allí aprendí a contar kilobytes."
-     ], "stack": ""},
-     {"years": "2015 – 2016", "company": "Grupo Vid", "role": "Web Developer", "body": [
-      "Un bingo multijugador para Facebook, con chat y pagos, y apps híbridas con PhoneGap."
-     ], "stack": ""},
-     {"years": "2015", "company": "Glanzkinder", "role": "Front-End Developer · Colonia", "body": [
-      "Herramientas internas para Deutsche Bahn, con AngularJS."
-     ], "stack": ""}
+     {
+      "years": "2022 – hoy",
+      "company": "ifeel",
+      "role": "Responsable de frontend",
+      "body": [
+       "**El sistema de temas**, escrito a mano sobre Tailwind. También monté la librería de componentes en Storybook y el Chat-Core que comparten nuestras tres plataformas.",
+       "**Todos los pipelines de frontend.** Pasamos de Bitbucket a GitLab con un único pipeline para todos los equipos, y ahora desplegar a producción lleva unos cuatro minutos.",
+       "**Fullstack cuando hace falta.** Si el problema no está en el navegador, bajo al backend y lo arreglo ahí. Y estoy en el comité que decide cómo usamos la IA en el equipo."
+      ],
+      "stack": "React, TypeScript, Tailwind, Vite, Vitest, Storybook, GitLab CI, Bun, AWS S3 y Playwright."
+     },
+     {
+      "years": "2022",
+      "company": "Freepik",
+      "role": "Frontend Developer",
+      "body": []
+     },
+     {
+      "years": "2017 – 2022",
+      "company": "PcComponentes",
+      "role": "Senior Frontend Developer",
+      "body": [
+       "Entré como primer desarrollador de frontend y terminé llevando un equipo de siete personas.",
+       "**Empecé la migración a React.** La tienda venía de Symfony y jQuery, y la llevamos a React y TypeScript.",
+       "**Me encargué de los Black Friday**, el día de más tráfico del año, para que la web aguantara sin caerse. También creamos el primer Storybook y el primer repositorio de paquetes internos."
+      ],
+      "stack": ""
+     },
+     {
+      "years": "2017",
+      "company": "Freelance",
+      "role": "Full Stack Developer · Edimburgo",
+      "body": [
+       "**El buscador de coches de segunda mano de motor.es**, además de otros encargos con Angular 2 y PHP."
+      ],
+      "stack": ""
+     },
+     {
+      "years": "2017",
+      "company": "Koalum",
+      "role": "Front-End Developer · Torre del Mar",
+      "body": [
+       "Aplicaciones web y herramientas de gestión a medida en PHP y JavaScript."
+      ],
+      "stack": ""
+     },
+     {
+      "years": "2016",
+      "company": "Golden Race",
+      "role": "Front End Developer",
+      "body": [
+       "Apuestas deportivas virtuales que se emitían por satélite en zonas de África con muy poca conexión. Allí aprendí a contar kilobytes."
+      ],
+      "stack": ""
+     },
+     {
+      "years": "2015 – 2016",
+      "company": "Grupo Vid",
+      "role": "Web Developer",
+      "body": [
+       "Un bingo multijugador para Facebook, con chat y pagos, y apps híbridas con PhoneGap."
+      ],
+      "stack": ""
+     },
+     {
+      "years": "2015",
+      "company": "Glanzkinder",
+      "role": "Front-End Developer · Colonia",
+      "body": [
+       "Herramientas internas para Deutsche Bahn, con AngularJS."
+      ],
+      "stack": ""
+     }
     ]
    },
    "case": {
@@ -65,18 +117,50 @@
      "La web de un estudio de baile y fitness en Torrox Costa. Es pequeña, pero la hice como hago las grandes. Los textos y el horario están en un JSON y un script genera las páginas. axe no encuentra ningún error de accesibilidad, la web funciona sin JavaScript y el vídeo de la portada se puede parar.",
      "Está publicada en [nadiafitnessdance.es](https://nadiafitnessdance.es/)."
     ],
-    "img": "nadia.webp", "w": 1200, "h": 750,
+    "img": "nadia.webp",
+    "w": 1200,
+    "h": 750,
     "alt": "Portada de la web de Nadia Fitness Dance Studio"
    },
    "play": {
     "title": "Fuera del trabajo",
     "intro": "En casa hago juegos y otros experimentos. Estos son algunos:",
     "items": [
-     {"name": "MOONVERSE", "meta": "Three.js y Tone.js", "body": "Un duelo de solos de guitarra por turnos entre figuras enmascaradas, como si fuera una cinta VHS que alguien encontró. Todo lo que suena se graba, y al final te llevas la canción en .wav y el combate en vídeo.", "img": "moonverse.webp", "alt": "Una figura enmascarada toca la guitarra bajo la luna llena, sobre un círculo de símbolos"},
-     {"name": "Homenaje a Cannon Fodder", "meta": "TypeScript y Canvas", "body": "Un homenaje al Cannon Fodder de 1993, escrito desde cero y sin motor. El terreno, los sprites y el sonido se generan en código.", "img": "cannon.webp", "alt": "Mapa de selva visto desde arriba, con el escuadrón y el minimapa"},
-     {"name": "Kerbal Lite", "meta": "Three.js", "body": "Un cohete que despega de un planeta con física newtoniana. El reto es llegar a la órbita.", "img": "kerbal.webp", "alt": "Un cohete despega de un planeta verde, con la telemetría en pantalla"},
-     {"name": "Japanese Temple", "meta": "WAD para GZDoom", "body": "Dos mapas para Doom, un templo y un castillo. Las texturas de tatami, shoji, madera y tejas salen de scripts en Python.", "img": "doom.webp", "alt": "Ocho texturas en píxeles: tatami, grava, shoji, piedra, tejas grises y rojas y dos maderas"},
-     {"name": "Pognanza", "meta": "Lua y LÖVE, con Daniel", "body": "Un roguelike de estrategia por turnos en el que montas tu tazo pieza a pieza. Lo hacemos entre dos, y esta es mi versión.", "img": "pognanza.webp", "alt": "Pantalla de elegir dificultad con tres opciones: Novato, Normal y Desafío"}
+     {
+      "name": "MOONVERSE",
+      "meta": "Three.js y Tone.js",
+      "body": "Un duelo de solos de guitarra por turnos entre figuras enmascaradas, como si fuera una cinta VHS que alguien encontró. Todo lo que suena se graba, y al final te llevas la canción en .wav y el combate en vídeo.",
+      "img": "moonverse.webp",
+      "alt": "Una figura enmascarada toca la guitarra bajo la luna llena, sobre un círculo de símbolos"
+     },
+     {
+      "name": "Homenaje a Cannon Fodder",
+      "meta": "TypeScript y Canvas",
+      "body": "Un homenaje al Cannon Fodder de 1993, escrito desde cero y sin motor. El terreno, los sprites y el sonido se generan en código.",
+      "img": "cannon.webp",
+      "alt": "Mapa de selva visto desde arriba, con el escuadrón y el minimapa"
+     },
+     {
+      "name": "Kerbal Lite",
+      "meta": "Three.js",
+      "body": "Un cohete que despega de un planeta con física newtoniana. El reto es llegar a la órbita.",
+      "img": "kerbal.webp",
+      "alt": "Un cohete despega de un planeta verde, con la telemetría en pantalla"
+     },
+     {
+      "name": "Japanese Temple",
+      "meta": "WAD para GZDoom",
+      "body": "Dos mapas para Doom, un templo y un castillo. Las texturas de tatami, shoji, madera y tejas salen de scripts en Python.",
+      "img": "doom.webp",
+      "alt": "Ocho texturas en píxeles: tatami, grava, shoji, piedra, tejas grises y rojas y dos maderas"
+     },
+     {
+      "name": "Pognanza",
+      "meta": "Lua y LÖVE, con Daniel",
+      "body": "Un roguelike de estrategia por turnos en el que montas tu tazo pieza a pieza. Lo hacemos entre dos, y esta es mi versión.",
+      "img": "pognanza.webp",
+      "alt": "Pantalla de elegir dificultad con tres opciones: Novato, Normal y Desafío"
+     }
     ],
     "alsoTitle": "Y en GitHub",
     "also": [
@@ -87,10 +171,22 @@
    "education": {
     "title": "Formación",
     "items": [
-     {"years": "2016 – 2017", "text": "Posgrado en Informática Forense y Ciberseguridad, Universidad de Málaga"},
-     {"years": "2015 – 2016", "text": "CFGS Desarrollo de Aplicaciones Multiplataforma, IES Portada Alta"},
-     {"years": "2012 – 2015", "text": "CFGS Desarrollo de Aplicaciones Web, IES Campanillas"},
-     {"years": "2009 – 2011", "text": "CFGM Sistemas Microinformáticos y Redes, IES Jorge Guillén"}
+     {
+      "years": "2016 – 2017",
+      "text": "Posgrado en Informática Forense y Ciberseguridad, Universidad de Málaga"
+     },
+     {
+      "years": "2015 – 2016",
+      "text": "CFGS Desarrollo de Aplicaciones Multiplataforma, IES Portada Alta"
+     },
+     {
+      "years": "2012 – 2015",
+      "text": "CFGS Desarrollo de Aplicaciones Web, IES Campanillas"
+     },
+     {
+      "years": "2009 – 2011",
+      "text": "CFGM Sistemas Microinformáticos y Redes, IES Jorge Guillén"
+     }
     ]
    },
    "languages": {
@@ -126,27 +222,79 @@
    "work": {
     "title": "Work",
     "jobs": [
-     {"years": "2022 – now", "company": "ifeel", "role": "Frontend lead", "body": [
-      "I wrote the product's theme system by hand, on top of Tailwind. I also built the Storybook component library and the Chat-Core shared by our three platforms.",
-      "I run every frontend pipeline. We moved from Bitbucket to GitLab with a single pipeline for every team, and a production deploy now takes about four minutes.",
-      "When the problem isn't in the browser, I go down to the backend and fix it there. I'm also on the committee that decides how the team uses AI."
-     ], "stack": "React, TypeScript, Tailwind, Vite, Vitest, Storybook, GitLab CI, Bun, AWS S3 and Playwright."},
-     {"years": "2022", "company": "Freepik", "role": "Frontend Developer", "body": []},
-     {"years": "2017 – 2022", "company": "PcComponentes", "role": "Senior Frontend Developer", "body": [
-      "I joined as the first frontend developer and ended up leading a team of seven. We moved the shop from Symfony and jQuery to React and TypeScript, got the site ready so Black Friday wouldn't take it down, and set up the first Storybook and the first internal package registry."
-     ], "stack": ""},
-     {"years": "2017", "company": "Koalum and freelance work", "role": "Full Stack Developer · Torre del Mar and Edinburgh", "body": [
-      "Bespoke applications in PHP, JavaScript and Angular 2."
-     ], "stack": ""},
-     {"years": "2016", "company": "Golden Race", "role": "Front End Developer", "body": [
-      "Virtual sports betting broadcast by satellite to parts of Africa with very little bandwidth. That's where I learned to count kilobytes."
-     ], "stack": ""},
-     {"years": "2015 – 2016", "company": "Grupo Vid", "role": "Web Developer", "body": [
-      "A multiplayer bingo game for Facebook, with chat and payments, and hybrid apps with PhoneGap."
-     ], "stack": ""},
-     {"years": "2015", "company": "Glanzkinder", "role": "Front-End Developer · Cologne", "body": [
-      "Internal tools for Deutsche Bahn, with AngularJS."
-     ], "stack": ""}
+     {
+      "years": "2022 – now",
+      "company": "ifeel",
+      "role": "Frontend lead",
+      "body": [
+       "**The theme system**, written by hand on top of Tailwind. I also built the Storybook component library and the Chat-Core shared by our three platforms.",
+       "**Every frontend pipeline.** We moved from Bitbucket to GitLab with a single pipeline for every team, and a production deploy now takes about four minutes.",
+       "**Full-stack when needed.** If the problem isn't in the browser, I go down to the backend and fix it there. I'm also on the committee that decides how the team uses AI."
+      ],
+      "stack": "React, TypeScript, Tailwind, Vite, Vitest, Storybook, GitLab CI, Bun, AWS S3 and Playwright."
+     },
+     {
+      "years": "2022",
+      "company": "Freepik",
+      "role": "Frontend Developer",
+      "body": []
+     },
+     {
+      "years": "2017 – 2022",
+      "company": "PcComponentes",
+      "role": "Senior Frontend Developer",
+      "body": [
+       "I joined as the first frontend developer and ended up leading a team of seven.",
+       "**I started the move to React.** The shop ran on Symfony and jQuery, and we took it to React and TypeScript.",
+       "**I owned Black Friday**, the busiest day of the year, so the site would hold up without going down. We also set up the first Storybook and the first internal package registry."
+      ],
+      "stack": ""
+     },
+     {
+      "years": "2017",
+      "company": "Freelance",
+      "role": "Full Stack Developer · Edinburgh",
+      "body": [
+       "**The second-hand car search for motor.es**, plus other work with Angular 2 and PHP."
+      ],
+      "stack": ""
+     },
+     {
+      "years": "2017",
+      "company": "Koalum",
+      "role": "Front-End Developer · Torre del Mar",
+      "body": [
+       "Bespoke web apps and management tools in PHP and JavaScript."
+      ],
+      "stack": ""
+     },
+     {
+      "years": "2016",
+      "company": "Golden Race",
+      "role": "Front End Developer",
+      "body": [
+       "Virtual sports betting broadcast by satellite to parts of Africa with very little bandwidth. That's where I learned to count kilobytes."
+      ],
+      "stack": ""
+     },
+     {
+      "years": "2015 – 2016",
+      "company": "Grupo Vid",
+      "role": "Web Developer",
+      "body": [
+       "A multiplayer bingo game for Facebook, with chat and payments, and hybrid apps with PhoneGap."
+      ],
+      "stack": ""
+     },
+     {
+      "years": "2015",
+      "company": "Glanzkinder",
+      "role": "Front-End Developer · Cologne",
+      "body": [
+       "Internal tools for Deutsche Bahn, with AngularJS."
+      ],
+      "stack": ""
+     }
     ]
    },
    "case": {
@@ -157,18 +305,50 @@
      "The website for a dance and fitness studio in Torrox Costa. It's small, but I built it the way I build big ones. The copy and timetable live in one JSON file and a script generates the pages. axe finds no accessibility errors, the site works without JavaScript, and the hero video can be paused.",
      "It's live at [nadiafitnessdance.es](https://nadiafitnessdance.es/)."
     ],
-    "img": "nadia.webp", "w": 1200, "h": 750,
+    "img": "nadia.webp",
+    "w": 1200,
+    "h": 750,
     "alt": "Home page of the Nadia Fitness Dance Studio website"
    },
    "play": {
     "title": "Outside work",
     "intro": "At home I make games and other experiments. Here are a few:",
     "items": [
-     {"name": "MOONVERSE", "meta": "Three.js and Tone.js", "body": "A turn-based guitar-solo duel between masked figures, presented like a VHS tape someone found. Everything you play is recorded, and at the end you keep the song as a .wav and the fight as a video.", "img": "moonverse.webp", "alt": "A masked figure plays guitar under a full moon, standing on a circle of symbols"},
-     {"name": "A Cannon Fodder tribute", "meta": "TypeScript and Canvas", "body": "A tribute to the 1993 Cannon Fodder, written from scratch with no engine. Terrain, sprites and sound are all generated in code.", "img": "cannon.webp", "alt": "Top-down jungle map with the squad and a minimap"},
-     {"name": "Kerbal Lite", "meta": "Three.js", "body": "A rocket lifting off a planet with Newtonian physics. The challenge is reaching orbit.", "img": "kerbal.webp", "alt": "A rocket lifts off a green planet, with telemetry on screen"},
-     {"name": "Japanese Temple", "meta": "GZDoom WAD", "body": "Two maps for Doom, a temple and a castle. The tatami, shoji, wood and roof-tile textures come out of Python scripts.", "img": "doom.webp", "alt": "Eight pixel textures: tatami, gravel, shoji, stone, grey and red roof tiles and two woods"},
-     {"name": "Pognanza", "meta": "Lua and LÖVE, with Daniel", "body": "A turn-based strategy roguelike where you build your pog piece by piece. Two of us are making it, and this is my version.", "img": "pognanza.webp", "alt": "Difficulty screen with three options: Novice, Normal and Challenge"}
+     {
+      "name": "MOONVERSE",
+      "meta": "Three.js and Tone.js",
+      "body": "A turn-based guitar-solo duel between masked figures, presented like a VHS tape someone found. Everything you play is recorded, and at the end you keep the song as a .wav and the fight as a video.",
+      "img": "moonverse.webp",
+      "alt": "A masked figure plays guitar under a full moon, standing on a circle of symbols"
+     },
+     {
+      "name": "A Cannon Fodder tribute",
+      "meta": "TypeScript and Canvas",
+      "body": "A tribute to the 1993 Cannon Fodder, written from scratch with no engine. Terrain, sprites and sound are all generated in code.",
+      "img": "cannon.webp",
+      "alt": "Top-down jungle map with the squad and a minimap"
+     },
+     {
+      "name": "Kerbal Lite",
+      "meta": "Three.js",
+      "body": "A rocket lifting off a planet with Newtonian physics. The challenge is reaching orbit.",
+      "img": "kerbal.webp",
+      "alt": "A rocket lifts off a green planet, with telemetry on screen"
+     },
+     {
+      "name": "Japanese Temple",
+      "meta": "GZDoom WAD",
+      "body": "Two maps for Doom, a temple and a castle. The tatami, shoji, wood and roof-tile textures come out of Python scripts.",
+      "img": "doom.webp",
+      "alt": "Eight pixel textures: tatami, gravel, shoji, stone, grey and red roof tiles and two woods"
+     },
+     {
+      "name": "Pognanza",
+      "meta": "Lua and LÖVE, with Daniel",
+      "body": "A turn-based strategy roguelike where you build your pog piece by piece. Two of us are making it, and this is my version.",
+      "img": "pognanza.webp",
+      "alt": "Difficulty screen with three options: Novice, Normal and Challenge"
+     }
     ],
     "alsoTitle": "And on GitHub",
     "also": [
@@ -179,10 +359,22 @@
    "education": {
     "title": "Education",
     "items": [
-     {"years": "2016 – 2017", "text": "Postgraduate in Digital Forensics and Cybersecurity, University of Málaga"},
-     {"years": "2015 – 2016", "text": "Higher VET Diploma in Multi-platform Application Development, IES Portada Alta"},
-     {"years": "2012 – 2015", "text": "Higher VET Diploma in Web Application Development, IES Campanillas"},
-     {"years": "2009 – 2011", "text": "VET Diploma in Computer Systems and Networks, IES Jorge Guillén"}
+     {
+      "years": "2016 – 2017",
+      "text": "Postgraduate in Digital Forensics and Cybersecurity, University of Málaga"
+     },
+     {
+      "years": "2015 – 2016",
+      "text": "Higher VET Diploma in Multi-platform Application Development, IES Portada Alta"
+     },
+     {
+      "years": "2012 – 2015",
+      "text": "Higher VET Diploma in Web Application Development, IES Campanillas"
+     },
+     {
+      "years": "2009 – 2011",
+      "text": "VET Diploma in Computer Systems and Networks, IES Jorge Guillén"
+     }
     ]
    },
    "languages": {

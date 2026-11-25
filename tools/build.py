@@ -11,7 +11,7 @@ from html import escape as e
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = json.load(open(os.path.join(ROOT, "data/site.json"), encoding="utf-8"))
 SITE = S["siteUrl"]
-V = {"css": 2, "js": 2}
+V = {"css": 3, "js": 2}
 LANGS = S["langs"]
 
 
@@ -22,7 +22,8 @@ def links(text, ui):
         href = S["links"].get(target, target)
         return (f'<a href="{e(href)}" target="_blank" rel="noopener">{label}'
                 f'<span class="sr-only"> {e(ui["newTab"])}</span></a>')
-    return re.sub(r"\[([^\]]+)\]\(([^)]+)\)", repl, e(text, quote=False))
+    out = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", repl, e(text, quote=False))
+    return re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", out)
 
 
 def head(L, title, desc, canonical, alternates, pre, noindex=False):
@@ -55,7 +56,7 @@ def masthead(L, key, home, other_href):
     ui = L["ui"]
     other = "en" if key == "es" else "es"
     return f"""<a class="skip" href="#main">{e(ui['skip'])}</a>
-<header class="mast"><div class="col mast-in">
+<header class="mast"><div class="wide mast-in">
 <p class="switches"><a href="{other_href}" hreflang="{other}" lang="{other}">{e(ui['otherLang'])}</a><button class="theme" type="button" hidden data-to-dark="{e(ui['toDark'])}" data-to-light="{e(ui['toLight'])}">{e(ui['toDark'])}</button></p>
 </div></header>"""
 
@@ -92,7 +93,7 @@ def page(key):
 
     plays = []
     for p in pl["items"]:
-        plays.append(f'<li class="play"><figure><img src="{pre}assets/img/{p["img"]}" width="1200" height="675" '
+        plays.append(f'<li class="play"><figure class="screen"><img src="{pre}assets/img/{p["img"]}" width="1200" height="675" '
                      f'alt="{e(p["alt"])}" loading="lazy" decoding="async"></figure>'
                      f'<h3>{e(p["name"])}</h3><p class="role">{e(p["meta"])}</p><p>{P(p["body"])}</p></li>')
     also = "".join(f"<li>{P(t)}</li>" for t in pl["also"])
@@ -121,11 +122,11 @@ def page(key):
 <body>
 {masthead(L, key, "./", other_href)}
 <main id="main">
-<section class="col intro" aria-labelledby="t-intro">
+<div class="hero"><div class="wide">
 <h1 id="t-intro">{e(S['fullName'])}</h1>
 <p class="tagline">{e(it['role'])}</p>
-{intro}
-</section>
+<div class="hero-text">{intro}</div>
+</div></div>
 
 <section class="col" aria-labelledby="t-work">
 <h2 id="t-work">{e(w['title'])}</h2>
@@ -138,16 +139,16 @@ def page(key):
 <h3>{e(c['name'])}</h3>
 {case_body}
 </div></div>
-<figure class="shot"><img src="{pre}assets/img/{c['img']}" width="{c['w']}" height="{c['h']}" alt="{e(c['alt'])}" loading="lazy" decoding="async"></figure>
+<figure class="screen shot"><img src="{pre}assets/img/{c['img']}" width="{c['w']}" height="{c['h']}" alt="{e(c['alt'])}" loading="lazy" decoding="async"></figure>
 </section>
 
-<section class="col play-sec" aria-labelledby="t-play">
-<h2 id="t-play">{e(pl['title'])}</h2>
+<section class="band" aria-labelledby="t-play"><div class="wide">
+<h2 id="t-play" class="band-t">{e(pl['title'])}</h2>
 <p class="lede">{e(pl['intro'])}</p>
 <ul class="plays">{''.join(plays)}</ul>
 <h3 class="also-t">{e(pl['alsoTitle'])}</h3>
 <ul class="also">{also}</ul>
-</section>
+</div></section>
 
 <section class="col" aria-labelledby="t-edu">
 <h2 id="t-edu">{e(ed['title'])}</h2>
