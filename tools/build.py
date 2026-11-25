@@ -11,7 +11,7 @@ from html import escape as e
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = json.load(open(os.path.join(ROOT, "data/site.json"), encoding="utf-8"))
 SITE = S["siteUrl"]
-V = {"css": 3, "js": 2}
+V = {"css": 4, "js": 3}
 LANGS = S["langs"]
 
 
@@ -52,17 +52,28 @@ def head(L, title, desc, canonical, alternates, pre, noindex=False):
 </head>"""
 
 
+IDS = {"es": ["trabajo", "proyectos", "formacion"], "en": ["work", "projects", "education"]}
+
+
 def masthead(L, key, home, other_href):
     ui = L["ui"]
     other = "en" if key == "es" else "es"
+    nav = "".join(f'<li><a href="{home}#{i}">{e(n)}</a></li>' for i, n in zip(IDS[key], ui["nav"]))
+    seg = "".join(f'<button type="button" data-theme-set="{v}" aria-pressed="false">{e(t)}</button>'
+                  for v, t in zip(["light", "dark", "auto"], ui["themes"]))
     return f"""<a class="skip" href="#main">{e(ui['skip'])}</a>
-<header class="mast"><div class="wide mast-in">
-<p class="switches"><a href="{other_href}" hreflang="{other}" lang="{other}">{e(ui['otherLang'])}</a><button class="theme" type="button" hidden data-to-dark="{e(ui['toDark'])}" data-to-light="{e(ui['toLight'])}">{e(ui['toDark'])}</button></p>
+<header class="bar"><div class="wrap bar-in">
+<a class="me" href="{home}">Victor Martin<span class="surname"> Rodriguez</span></a>
+<nav aria-label="{e(ui['navLabel'])}"><ul class="nav">{nav}</ul></nav>
+<div class="bar-tools">
+<div class="seg" role="group" aria-label="{e(ui['theme'])}" hidden>{seg}</div>
+<a class="lang" href="{other_href}" hreflang="{other}" lang="{other}">{e(ui['otherLang'])}</a>
+</div>
 </div></header>"""
 
 
 def footer(L):
-    return f"""<footer class="foot"><div class="col">
+    return f"""<footer class="foot"><div class="wrap">
 <p>{links(L['footer'], L['ui'])}</p>
 </div></footer>
 </body>
@@ -118,43 +129,45 @@ def page(key):
         },
     }
 
+    ids = IDS[key]
     html = head(L, L["title"], L["description"], canonical, alternates, pre) + f"""
 <body>
 {masthead(L, key, "./", other_href)}
 <main id="main">
-<div class="hero"><div class="wide">
+<section class="wrap hero" aria-labelledby="t-intro">
+<p class="eyebrow">{e(it['role'])}</p>
 <h1 id="t-intro">{e(S['fullName'])}</h1>
-<p class="tagline">{e(it['role'])}</p>
 <div class="hero-text">{intro}</div>
-</div></div>
+</section>
 
-<section class="col" aria-labelledby="t-work">
+<section id="{ids[0]}" class="wrap sec" aria-labelledby="t-work">
 <h2 id="t-work">{e(w['title'])}</h2>
 <ol class="rows">{''.join(jobs)}</ol>
 </section>
 
-<section class="col" aria-labelledby="t-case">
+<section class="wrap sec case" aria-labelledby="t-case">
+<div class="case-text">
 <h2 id="t-case">{e(c['title'])}</h2>
-<div class="row"><p class="when">{e(c['years'])}</p><div class="what">
 <h3>{e(c['name'])}</h3>
+<p class="role">{e(c['years'])}</p>
 {case_body}
-</div></div>
-<figure class="screen shot"><img src="{pre}assets/img/{c['img']}" width="{c['w']}" height="{c['h']}" alt="{e(c['alt'])}" loading="lazy" decoding="async"></figure>
+</div>
+<figure class="screen"><img src="{pre}assets/img/{c['img']}" width="{c['w']}" height="{c['h']}" alt="{e(c['alt'])}" loading="lazy" decoding="async"></figure>
 </section>
 
-<section class="band" aria-labelledby="t-play"><div class="wide">
-<h2 id="t-play" class="band-t">{e(pl['title'])}</h2>
+<section id="{ids[1]}" class="tint" aria-labelledby="t-play"><div class="wrap sec">
+<h2 id="t-play">{e(pl['title'])}</h2>
 <p class="lede">{e(pl['intro'])}</p>
 <ul class="plays">{''.join(plays)}</ul>
 <h3 class="also-t">{e(pl['alsoTitle'])}</h3>
 <ul class="also">{also}</ul>
 </div></section>
 
-<section class="col" aria-labelledby="t-edu">
-<h2 id="t-edu">{e(ed['title'])}</h2>
-<ol class="rows">{edu}</ol>
-<h2 id="t-lang">{e(lg['title'])}</h2>
-<p>{e(lg['text'])}</p>
+<section id="{ids[2]}" class="wrap sec duo" aria-labelledby="t-edu">
+<div><h2 id="t-edu">{e(ed['title'])}</h2>
+<ol class="rows rows-tight">{edu}</ol></div>
+<div><h2 id="t-lang">{e(lg['title'])}</h2>
+<p>{e(lg['text'])}</p></div>
 </section>
 </main>
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
@@ -169,7 +182,7 @@ def not_found():
     html = head(L, ui["notFoundTitle"], L["description"], SITE + "404.html", [], "/", noindex=True) + f"""
 <body>
 {masthead(L, 'es', '/', '/en/')}
-<main id="main"><section class="col intro">
+<main id="main"><section class="wrap hero">
 <h1>{e(ui['notFoundTitle'])}</h1>
 <p>{e(ui['notFoundBody'])} <a href="/">{e(ui['notFoundBack'])}</a>.</p>
 </section></main>
