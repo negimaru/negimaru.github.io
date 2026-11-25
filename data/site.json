@@ -78,7 +78,8 @@
       "body": [
        "Entré como primer desarrollador de frontend y terminé llevando un equipo de siete personas.",
        "**Empecé la migración a React.** La tienda venía de Symfony y jQuery, y la llevamos a React y TypeScript.",
-       "**Me encargué de los Black Friday**, para que la web aguantara sin caerse. También creamos el primer Storybook y el primer repositorio de paquetes internos."
+       "**Me encargué de los Black Friday**, para que la web aguantara sin caerse. También creamos el primer Storybook y el primer repositorio de paquetes internos.",
+       "**SEO técnico.** No soy SEO, pero lo implementaba en la web: lo que pedía el equipo de SEO acababa en el código, medido con las herramientas de Google."
       ],
       "stack": ""
      },
@@ -134,7 +135,7 @@
     "name": "Nadia Fitness Dance Studio",
     "years": "2026",
     "body": [
-     "La web de un estudio de baile y fitness en Torrox Costa. Los textos y el horario están en un JSON y un script genera las páginas. axe no encuentra ningún error de accesibilidad, la web funciona sin JavaScript y el vídeo de la portada se puede parar.",
+     "La web de un estudio de baile y fitness en Torrox Costa. Los textos y el horario están en un JSON y un script genera las páginas. axe no encuentra ningún error de accesibilidad, la web funciona sin JavaScript el vídeo de la portada se puede parar y tiene SEO local con datos estructurados, sitemap y dominio propio.",
      "Está publicada en [nadiafitnessdance.es](https://nadiafitnessdance.es/)."
     ],
     "img": "nadia.webp",
@@ -297,7 +298,8 @@
       "body": [
        "I joined as the first frontend developer and ended up leading a team of seven.",
        "**I started the move to React.** The shop ran on Symfony and jQuery, and we took it to React and TypeScript.",
-       "**I owned Black Friday**, so the site held up without going down. We also set up the first Storybook and the first internal package registry."
+       "**I owned Black Friday**, so the site held up without going down. We also set up the first Storybook and the first internal package registry.",
+       "**Technical SEO.** I'm not an SEO, but I implemented it on the site: what the SEO team asked for ended up in the code, measured with Google's tools."
       ],
       "stack": ""
      },
@@ -353,7 +355,7 @@
     "name": "Nadia Fitness Dance Studio",
     "years": "2026",
     "body": [
-     "The website for a dance and fitness studio in Torrox Costa. The copy and timetable live in one JSON file and a script generates the pages. axe finds no accessibility errors, the site works without JavaScript, and the hero video can be paused.",
+     "The website for a dance and fitness studio in Torrox Costa. The copy and timetable live in one JSON file and a script generates the pages. axe finds no accessibility errors, the site works without JavaScript, the hero video can be paused, and it has local SEO with structured data, a sitemap and its own domain.",
      "It's live at [nadiafitnessdance.es](https://nadiafitnessdance.es/)."
     ],
     "img": "nadia.webp",
