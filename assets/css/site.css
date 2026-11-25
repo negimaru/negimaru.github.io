@@ -72,13 +72,13 @@ strong { font-weight: 650; color: var(--ink); }
 .btn .i { width: 1.1em; height: 1.1em; }
 .me-photo img { border-radius: 16px; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
 
-/* Technologies: real logos in their own colours carry the colour of the page */
+/* Technologies: one flowing line of real logos in their own colours, no boxes */
 .sec-intro { max-width: 44rem; margin-top: -.5rem; }
-.techs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .6rem; margin-top: 2rem; }   /* 16 tiles: 4 or 8 per row, no holes (rule 8) */
-@media (min-width: 52rem) { .techs { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
-.tech { display: flex; flex-direction: column; align-items: center; gap: .55rem; padding: 1rem .25rem .8rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); text-align: center; }
-.tech svg { width: 2rem; height: 2rem; }
-.tech span { font-size: .8rem; color: var(--muted); line-height: 1.2; }
+.techs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; margin-top: 1.75rem; }   /* 16 logos: 2/4/8 per row, never an orphan (rule 8) */
+@media (min-width: 34rem) { .techs { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 60rem) { .techs { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
+.tech { display: inline-flex; align-items: center; gap: .5rem; font-weight: 600; font-size: .95rem; }
+.tech svg { width: 1.35rem; height: 1.35rem; flex: none; }
 
 /* Sections */
 .sec { padding-top: clamp(3rem, 7vw, 5rem); padding-bottom: clamp(1rem, 3vw, 2rem); }
